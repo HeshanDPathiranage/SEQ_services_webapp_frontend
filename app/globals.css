@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f8fafc;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
+
+/* Phone Input Overrides */
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+}
+.phone-input-wrapper .PhoneInputInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.phone-input-wrapper .PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+.phone-input-wrapper .PhoneInputCountryIcon {
+  width: 1.5rem !important;
+  height: 1rem !important;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.phone-input-wrapper .PhoneInputCountryIconImg,
+.phone-input-wrapper .PhoneInputCountryIcon img,
+.phone-input-wrapper .PhoneInputCountryIcon svg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Soft Blue Fluid Wave Background Utilities */
+.bg-fluid-wave {
+  background-image: url('/images/bg-fluid-wave.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg-fluid-wave-fixed {
+  background-image: url('/images/bg-fluid-wave.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Continuous Marquee Ticker */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth High-Definition Image Rendering (Prevents Pixelation) */
+img {
+  image-rendering: auto;
+  image-rendering: smooth;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.img-enhanced {
+  image-rendering: auto;
+  filter: brightness(1.01) contrast(1.02);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

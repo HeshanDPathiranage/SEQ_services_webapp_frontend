@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://seqservices.com.au
+
+# Sitemaps
+Sitemap: https://seqservices.com.au/sitemap.xml

@@ -32,15 +32,16 @@ declare global {
 export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<number | null>(null);
+  const onVerifyRef = useRef(onVerify);
+  onVerifyRef.current = onVerify;
+
   const [isLoaded, setIsLoaded] = useState(false);
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LdbunMtAAAAALnNzCAgKO3HxE8NLttknlaLxz12';
 
   // Render official Google reCAPTCHA v2 checkbox widget
   useEffect(() => {
-    let isMounted = true;
-
     const renderWidget = () => {
-      if (!isMounted || !containerRef.current || !window.grecaptcha || typeof window.grecaptcha.render !== 'function') return;
+      if (!containerRef.current || !window.grecaptcha || typeof window.grecaptcha.render !== 'function') return;
 
       // Check if already rendered in container
       if (containerRef.current.hasChildNodes()) {
@@ -52,19 +53,13 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
           sitekey: siteKey,
           theme: 'light',
           callback: (token: string) => {
-            if (isMounted) {
-              onVerify(true, token);
-            }
+            onVerifyRef.current(true, token);
           },
           'expired-callback': () => {
-            if (isMounted) {
-              onVerify(false, '');
-            }
+            onVerifyRef.current(false, '');
           },
           'error-callback': () => {
-            if (isMounted) {
-              onVerify(false, '');
-            }
+            onVerifyRef.current(false, '');
           },
         });
         widgetIdRef.current = id;
@@ -78,9 +73,7 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
       renderWidget();
     } else {
       window.onGoogleReCaptchaLoadCallback = () => {
-        if (isMounted) {
-          renderWidget();
-        }
+        renderWidget();
       };
 
       const scriptId = 'google-recaptcha-v2-script';
@@ -93,11 +86,7 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
         document.head.appendChild(script);
       }
     }
-
-    return () => {
-      isMounted = false;
-    };
-  }, [siteKey, onVerify]);
+  }, [siteKey]);
 
   // Reset widget when parent resets verification
   useEffect(() => {

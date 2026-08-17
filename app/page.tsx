@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { 
   ChevronRight, Phone, Mail, Award, Menu, Users, Shield, ArrowRight, MapPin, User, Briefcase, Maximize, MessageSquare, CheckCircle2, Loader2, Building2, Home, HardHat
@@ -157,19 +157,28 @@ export default function SEQServicesLanding() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [statusFeedback, setStatusFeedback] = useState('');
 
+  const handleCaptchaVerify = useCallback((verified: boolean, token?: string) => {
+    setIsCaptchaVerified(verified);
+    setRecaptchaTokenValue(token || '');
+    if (verified) {
+      setCaptchaMsg('');
+    }
+  }, []);
+
   const handleSubmitQuotation = async (e: React.FormEvent) => {
     e.preventDefault();
     setCaptchaMsg('');
     setStatusFeedback('');
 
-    if (!isCaptchaVerified || !recaptchaTokenValue) {
-      setCaptchaMsg('Please check the Google reCAPTCHA box to verify you are human.');
+    if (!nameValue || !emailValue || !phoneValue || !locationValue || !serviceCategoryValue || !serviceRequiredValue || !messageValue) {
+      setStatusFeedback('Please fill in all required fields (Name, Phone, Email, Location, Service Category, Service Required, Message).');
       setFormStatus('error');
       return;
     }
 
-    if (!nameValue || !emailValue || !phoneValue || !locationValue || !serviceCategoryValue || !serviceRequiredValue || !messageValue) {
-      setStatusFeedback('Please fill in all required fields (Name, Phone, Email, Location, Service Category, Service Required, Message).');
+    if (!isCaptchaVerified || !recaptchaTokenValue) {
+      setCaptchaMsg('Please check the Google reCAPTCHA box to verify you are human.');
+      setStatusFeedback('Please complete the Google reCAPTCHA verification before submitting.');
       setFormStatus('error');
       return;
     }
@@ -636,11 +645,7 @@ export default function SEQServicesLanding() {
               <div className="relative z-10">
                 <GoogleReCaptcha 
                   isVerified={isCaptchaVerified} 
-                  onVerify={(verified, token) => {
-                    setIsCaptchaVerified(verified);
-                    setRecaptchaTokenValue(token || '');
-                    setCaptchaMsg('');
-                  }} 
+                  onVerify={handleCaptchaVerify} 
                 />
               </div>
               {captchaMsg && <p className="text-sm font-semibold text-rose-500 mt-2 mb-4 relative z-10">{captchaMsg}</p>}
@@ -653,8 +658,8 @@ export default function SEQServicesLanding() {
 
               <button 
                 type="submit"
-                disabled={formStatus === 'submitting' || !isCaptchaVerified}
-                className="group relative w-full overflow-hidden rounded-2xl bg-[#29B6F6] py-5 sm:py-6 text-lg sm:text-xl md:text-2xl font-extrabold text-white transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,82,204,0.4)] focus:outline-none focus:ring-4 focus:ring-[#29B6F6]/20 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={formStatus === 'submitting'}
+                className="group relative w-full overflow-hidden rounded-2xl bg-[#29B6F6] py-5 sm:py-6 text-lg sm:text-xl md:text-2xl font-extrabold text-white transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,82,204,0.4)] focus:outline-none focus:ring-4 focus:ring-[#29B6F6]/20 active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed"
               >
                 <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#2563EB] to-[#29B6F6] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <span className="relative z-10 flex justify-center items-center gap-2.5">

@@ -162,8 +162,9 @@ export default function SEQServicesLanding() {
     setCaptchaMsg('');
     setStatusFeedback('');
 
-    if (!isCaptchaVerified) {
-      setCaptchaMsg('Please complete the Google reCAPTCHA to verify you are not a robot.');
+    if (!isCaptchaVerified || !recaptchaTokenValue) {
+      setCaptchaMsg('Please check the Google reCAPTCHA box to verify you are human.');
+      setFormStatus('error');
       return;
     }
 
@@ -652,8 +653,8 @@ export default function SEQServicesLanding() {
 
               <button 
                 type="submit"
-                disabled={formStatus === 'submitting'}
-                className="group relative w-full overflow-hidden rounded-2xl bg-[#29B6F6] py-5 sm:py-6 text-lg sm:text-xl md:text-2xl font-extrabold text-white transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,82,204,0.4)] focus:outline-none focus:ring-4 focus:ring-[#29B6F6]/20 active:scale-[0.98] disabled:opacity-75"
+                disabled={formStatus === 'submitting' || !isCaptchaVerified}
+                className="group relative w-full overflow-hidden rounded-2xl bg-[#29B6F6] py-5 sm:py-6 text-lg sm:text-xl md:text-2xl font-extrabold text-white transition-all duration-300 hover:shadow-[0_12px_30px_rgba(0,82,204,0.4)] focus:outline-none focus:ring-4 focus:ring-[#29B6F6]/20 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#2563EB] to-[#29B6F6] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <span className="relative z-10 flex justify-center items-center gap-2.5">

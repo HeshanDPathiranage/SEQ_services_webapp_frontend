@@ -59,8 +59,6 @@ export function Header() {
                 <img src={CONTACT_INFO.socials.instagram.icon} alt="Instagram" className="w-full h-full object-cover" />
               </a>
             </div>
-            <span className="text-slate-600">|</span>
-            <span className="text-slate-300 font-medium">Serving SEQ & Regional QLD</span>
           </div>
         </div>
       </div>

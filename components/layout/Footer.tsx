@@ -25,17 +25,17 @@ export function Footer() {
             <Link href="/" className="inline-block bg-white px-3 py-1.5 rounded-xl mb-4 shadow-md transform hover:-translate-y-0.5 transition-transform duration-300">
               <img src="/images/logo.jpg" alt="SEQ Services Logo" className="h-8 sm:h-10 w-auto object-contain" />
             </Link>
-            <p className="text-slate-200 text-base sm:text-lg leading-relaxed mb-5 max-w-md font-normal">
-              <strong className="text-white font-bold">SEQ Services</strong> is a trusted Queensland-owned commercial & specialist cleaning company, delivering reliable, compliant, and high-quality facility solutions across Australia since 2014.
+            <p className="text-slate-200 text-xs sm:text-sm leading-relaxed mb-4 max-w-md font-normal">
+              <strong className="text-white font-semibold">SEQ Services</strong> is a trusted Queensland-owned commercial & specialist cleaning company, delivering reliable, compliant, and high-quality facility solutions across Australia since 2014.
             </p>
             
             {/* Accreditation Badges & Social Links Inline */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2">
               <a 
                 href="https://www.qbcc.qld.gov.au/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm font-bold bg-white/10 text-white hover:bg-white/20 px-3 py-1.5 rounded border border-white/20 transition-all hover:scale-105 inline-block"
+                className="text-[11px] sm:text-xs font-semibold bg-white/10 text-white hover:bg-white/20 px-2.5 py-1 rounded border border-white/20 transition-all hover:scale-105 inline-block"
               >
                 QBCC Accredited
               </a>
@@ -43,7 +43,7 @@ export function Footer() {
                 href="https://www.cm3.com.au/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm font-bold bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 px-3 py-1.5 rounded border border-emerald-500/40 transition-all hover:scale-105 inline-block"
+                className="text-[11px] sm:text-xs font-semibold bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 px-2.5 py-1 rounded border border-emerald-500/40 transition-all hover:scale-105 inline-block"
               >
                 cm3 Certified
               </a>
@@ -51,17 +51,17 @@ export function Footer() {
                 href="https://www.fairwork.gov.au/about-us/contact-us/online-enquiries" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm font-bold bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 px-3 py-1.5 rounded border border-blue-500/40 transition-all hover:scale-105 inline-block"
+                className="text-[11px] sm:text-xs font-semibold bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 px-2.5 py-1 rounded border border-blue-500/40 transition-all hover:scale-105 inline-block"
               >
                 Fair Work Compliant
               </a>
 
-              <div className="flex items-center gap-2.5 ml-2">
+              <div className="flex items-center gap-2 ml-1">
                 <a 
                   href={CONTACT_INFO.socials.facebook.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="w-8 h-8 rounded-full overflow-hidden border border-white/20 hover:border-[#29B6F6] hover:scale-105 transition-all duration-300 shadow-sm block bg-white shrink-0"
+                  className="w-7 h-7 rounded-full overflow-hidden border border-white/20 hover:border-[#29B6F6] hover:scale-105 transition-all duration-300 shadow-sm block bg-white shrink-0"
                   title="Facebook"
                 >
                   <img 
@@ -74,7 +74,7 @@ export function Footer() {
                   href={CONTACT_INFO.socials.instagram.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="w-8 h-8 rounded-full overflow-hidden border border-white/20 hover:border-[#29B6F6] hover:scale-105 transition-all duration-300 shadow-sm block bg-white shrink-0"
+                  className="w-7 h-7 rounded-full overflow-hidden border border-white/20 hover:border-[#29B6F6] hover:scale-105 transition-all duration-300 shadow-sm block bg-white shrink-0"
                   title="Instagram"
                 >
                   <img 
@@ -89,18 +89,18 @@ export function Footer() {
 
           {/* Column 2: Construction & Builders Cleaning */}
           <div>
-            <h4 className="text-white font-extrabold text-base sm:text-lg uppercase tracking-wider mb-3.5 pb-1.5 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-400"></span>
               Construction & Builders
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5">
               {constructionServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-100 hover:text-[#29B6F6] transition-all duration-200 text-base sm:text-lg font-bold flex items-center gap-2 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
                   >
-                    <ChevronRight size={15} className="text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    <ChevronRight size={13} className="text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     <span className="truncate">{service.title}</span>
                   </Link>
                 </li>
@@ -110,18 +110,18 @@ export function Footer() {
 
           {/* Column 3: Commercial Services */}
           <div>
-            <h4 className="text-white font-extrabold text-base sm:text-lg uppercase tracking-wider mb-3.5 pb-1.5 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#29B6F6]"></span>
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#29B6F6]"></span>
               Commercial
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5">
               {commercialServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-100 hover:text-[#29B6F6] transition-all duration-200 text-base sm:text-lg font-bold flex items-center gap-2 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
                   >
-                    <ChevronRight size={15} className="text-[#29B6F6] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    <ChevronRight size={13} className="text-[#29B6F6] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     <span className="truncate">{service.title}</span>
                   </Link>
                 </li>
@@ -131,18 +131,18 @@ export function Footer() {
 
           {/* Column 4: Bio Cleaning */}
           <div>
-            <h4 className="text-white font-extrabold text-base sm:text-lg uppercase tracking-wider mb-3.5 pb-1.5 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
               Biohazard & Trauma
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5">
               {bioServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-100 hover:text-[#29B6F6] transition-all duration-200 text-base sm:text-lg font-bold flex items-center gap-2 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
                   >
-                    <ChevronRight size={15} className="text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    <ChevronRight size={13} className="text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     <span className="truncate">{service.title}</span>
                   </Link>
                 </li>
@@ -152,18 +152,18 @@ export function Footer() {
 
           {/* Column 5: Residential Services */}
           <div>
-            <h4 className="text-white font-extrabold text-base sm:text-lg uppercase tracking-wider mb-3.5 pb-1.5 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+            <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-sky-400"></span>
               Residential
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5">
               {residentialServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-100 hover:text-[#29B6F6] transition-all duration-200 text-base sm:text-lg font-bold flex items-center gap-2 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
                   >
-                    <ChevronRight size={15} className="text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    <ChevronRight size={13} className="text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     <span className="truncate">{service.title}</span>
                   </Link>
                 </li>
@@ -174,30 +174,30 @@ export function Footer() {
         </div>
 
         {/* Compact Contact Bar */}
-        <div className="bg-white/10 border border-white/15 rounded-2xl px-6 py-4 mb-6 flex flex-wrap justify-between items-center gap-4 text-base">
-          <div className="flex flex-wrap items-center gap-6 text-slate-200">
+        <div className="bg-white/10 border border-white/15 rounded-xl px-5 py-3 mb-5 flex flex-wrap justify-between items-center gap-3 text-xs sm:text-sm">
+          <div className="flex flex-wrap items-center gap-5 text-slate-200">
             <a 
               href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} 
-              className="flex items-center gap-2.5 hover:text-blue-300 transition-colors"
+              className="flex items-center gap-2 hover:text-blue-300 transition-colors"
             >
-              <Phone size={18} className="text-[#29B6F6]" />
-              <span className="text-slate-200 text-sm sm:text-base font-bold">24/7 Hotline:</span>
-              <span className="font-extrabold text-white text-base sm:text-lg">{CONTACT_INFO.phone}</span>
+              <Phone size={15} className="text-[#29B6F6]" />
+              <span className="text-slate-300 text-xs font-medium">24/7 Hotline:</span>
+              <span className="font-bold text-white text-xs sm:text-sm">{CONTACT_INFO.phone}</span>
             </a>
             
-            <div className="hidden sm:block w-px h-5 bg-white/20" />
+            <div className="hidden sm:block w-px h-4 bg-white/20" />
 
             <a 
               href={`mailto:${CONTACT_INFO.email}`} 
-              className="flex items-center gap-2.5 hover:text-blue-300 transition-colors"
+              className="flex items-center gap-2 hover:text-blue-300 transition-colors"
             >
-              <Mail size={18} className="text-[#29B6F6]" />
-              <span className="text-slate-200 text-sm sm:text-base font-bold">Email:</span>
-              <span className="font-extrabold text-white text-base sm:text-lg">{CONTACT_INFO.email}</span>
+              <Mail size={15} className="text-[#29B6F6]" />
+              <span className="text-slate-300 text-xs font-medium">Email:</span>
+              <span className="font-bold text-white text-xs sm:text-sm">{CONTACT_INFO.email}</span>
             </a>
           </div>
 
-          <div className="flex gap-6 text-sm sm:text-base text-white font-extrabold">
+          <div className="flex gap-5 text-xs sm:text-sm text-white font-semibold">
             <Link href="/faq" className="hover:text-[#29B6F6] transition-colors">FAQ</Link>
             <Link href="/services" className="hover:text-[#29B6F6] transition-colors">All Services</Link>
             <Link href="/#quote" className="hover:text-[#29B6F6] transition-colors">Get a Quote</Link>
@@ -205,11 +205,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-4 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm sm:text-base text-slate-300 font-medium">
+        <div className="pt-3 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm text-slate-400 font-normal">
           <p className="text-center sm:text-left">
             &copy; {new Date().getFullYear()} SEQ Services Integrated Solutions. All rights reserved.
           </p>
-          <p className="text-white font-bold">Fully Accredited Commercial Cleaning</p>
+          <p className="text-slate-300 font-semibold">Fully Accredited Commercial Cleaning</p>
         </div>
       </div>
     </footer>

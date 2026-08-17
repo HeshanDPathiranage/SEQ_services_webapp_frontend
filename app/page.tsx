@@ -226,7 +226,7 @@ export default function SEQServicesLanding() {
         <div className="absolute inset-0 z-0 flex justify-end">
           <div className="absolute inset-0 bg-gradient-to-r from-[#eaf2fb] via-[#eaf2fb]/90 to-transparent z-10 w-full lg:w-3/4" />
           <img 
-            src="/images/hero-office.png" 
+            src="/images/commercial_office_bg_1784362302145.png" 
             alt="SEQ Services Commercial Office Cleaning" 
             className="w-full lg:w-3/4 h-full object-cover opacity-80 md:opacity-90"
           />
@@ -411,7 +411,7 @@ export default function SEQServicesLanding() {
                   className="absolute inset-0 w-full h-full"
                 >
                   <img 
-                    src={activeService.image || '/images/hero-office.png'} 
+                    src={activeService.image || '/images/commercial_office_bg_1784362302145.png'} 
                     alt={activeService.title} 
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
                   />

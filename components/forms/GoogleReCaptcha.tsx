@@ -10,8 +10,8 @@ interface GoogleReCaptchaProps {
 declare global {
   interface Window {
     grecaptcha?: {
-      ready: (callback: () => void) => void;
-      render: (
+      ready?: (callback: () => void) => void;
+      render?: (
         container: HTMLElement | string,
         parameters: {
           sitekey: string;
@@ -22,8 +22,8 @@ declare global {
           size?: 'normal' | 'compact';
         }
       ) => number;
-      reset: (opt_widget_id?: number) => void;
-      getResponse: (opt_widget_id?: number) => string;
+      reset?: (opt_widget_id?: number) => void;
+      getResponse?: (opt_widget_id?: number) => string;
     };
     onGoogleReCaptchaLoadCallback?: () => void;
   }
@@ -40,7 +40,7 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
     let isMounted = true;
 
     const renderWidget = () => {
-      if (!isMounted || !containerRef.current || !window.grecaptcha || !window.grecaptcha.render) return;
+      if (!isMounted || !containerRef.current || !window.grecaptcha || typeof window.grecaptcha.render !== 'function') return;
 
       // Check if already rendered in container
       if (containerRef.current.hasChildNodes()) {
@@ -74,7 +74,7 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
       }
     };
 
-    if (window.grecaptcha && window.grecaptcha.render) {
+    if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
       renderWidget();
     } else {
       window.onGoogleReCaptchaLoadCallback = () => {
@@ -101,7 +101,7 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
 
   // Reset widget when parent resets verification
   useEffect(() => {
-    if (!isVerified && widgetIdRef.current !== null && window.grecaptcha) {
+    if (!isVerified && widgetIdRef.current !== null && window.grecaptcha && typeof window.grecaptcha.reset === 'function') {
       try {
         window.grecaptcha.reset(widgetIdRef.current);
       } catch (err) {

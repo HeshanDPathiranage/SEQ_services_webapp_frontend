@@ -385,9 +385,9 @@ export default function SEQServicesLanding() {
           </div>
 
           {/* Capabilities Main Layout */}
-          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-stretch">
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-stretch min-h-[380px] sm:min-h-[480px] lg:min-h-[550px]">
             {/* Left Sidebar Service List */}
-            <div className="lg:w-1/3 w-full pr-0 lg:pr-6 border-r-0 lg:border-r border-slate-200/80 space-y-2.5 max-h-[350px] sm:max-h-[550px] overflow-y-auto custom-scrollbar">
+            <div className="lg:w-1/3 w-full pr-0 lg:pr-6 border-r-0 lg:border-r border-slate-200/80 space-y-2.5 min-h-[250px] sm:min-h-[450px] max-h-[550px] overflow-y-auto custom-scrollbar">
               {SERVICES_DATA.filter(s => s.category === selectedCategory).map((service) => {
                 const isActive = service.id === activeService.id;
                 return (

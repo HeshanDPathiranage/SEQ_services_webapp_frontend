@@ -98,7 +98,11 @@ export function Header() {
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
             >
-              <Link href="/services" className="relative flex items-center gap-1.5 text-lg lg:text-xl font-extrabold text-slate-900 hover:text-[#29B6F6] transition-colors py-2 group tracking-tight">
+              <Link 
+                href="/services" 
+                onClick={() => setServicesDropdownOpen(false)}
+                className="relative flex items-center gap-1.5 text-lg lg:text-xl font-extrabold text-slate-900 hover:text-[#29B6F6] transition-colors py-2 group tracking-tight"
+              >
                 <span>Services</span>
                 <ChevronDown size={20} className={`transition-transform duration-300 text-slate-700 group-hover:text-[#29B6F6] ${servicesDropdownOpen ? 'rotate-180 text-[#29B6F6]' : ''}`} />
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-[#29B6F6] transition-all duration-300 rounded-full ${servicesDropdownOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
@@ -112,29 +116,30 @@ export function Header() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.98 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="w-full max-w-[1300px] pointer-events-auto box-border"
+                      className="w-full max-w-[1350px] pointer-events-auto box-border"
                     >
-                      <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_-15px_rgba(0,51,102,0.18)] border border-slate-200/90 overflow-hidden p-6 sm:p-10 relative max-h-[85vh] overflow-y-auto custom-scrollbar box-border">
+                      <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_-15px_rgba(0,51,102,0.18)] border border-slate-200/90 overflow-hidden p-6 sm:p-8 relative max-h-[85vh] overflow-y-auto custom-scrollbar box-border">
                         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#29B6F6] via-[#29B6F6] to-[#00a8cc]" />
                         
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 pt-2">
                           {GROUPED_SERVICES.map((group, idx) => (
-                            <div key={idx} className="flex flex-col">
+                            <div key={idx} className="flex flex-col min-w-0">
                               <div className="flex items-center gap-2.5 mb-3.5 pb-3 border-b border-slate-200/80">
                                 <div className="w-9 h-9 rounded-xl bg-blue-50/80 text-[#29B6F6] flex items-center justify-center shrink-0 shadow-sm border border-blue-100">
                                   {idx === 0 ? <Briefcase size={20} /> : idx === 1 ? <Building2 size={20} /> : idx === 2 ? <ShieldCheck size={20} /> : <Home size={20} />}
                                 </div>
-                                <h4 className="text-sm sm:text-base font-extrabold text-[#29B6F6] uppercase tracking-wider leading-tight">{group.category}</h4>
+                                <h4 className="text-xs sm:text-sm font-extrabold text-[#29B6F6] uppercase tracking-wider leading-snug">{group.category}</h4>
                               </div>
-                              <div className="flex flex-col gap-2">
+                              <div className="flex flex-col gap-1.5 min-w-0">
                                 {group.items.map((item, itemIdx) => (
                                   <Link 
                                     key={itemIdx} 
                                     href={item.link}
-                                    className="group flex items-center text-base sm:text-lg font-bold text-slate-800 hover:text-[#29B6F6] hover:bg-blue-50/70 px-3 py-2 rounded-xl transition-all"
+                                    onClick={() => setServicesDropdownOpen(false)}
+                                    className="group flex items-start text-xs sm:text-sm font-bold text-slate-800 hover:text-[#29B6F6] hover:bg-blue-50/70 px-2.5 py-1.5 rounded-xl transition-all leading-snug"
                                   >
-                                    <span className="w-2 h-2 rounded-full bg-slate-300 mr-2.5 transition-all group-hover:bg-[#29B6F6] group-hover:scale-125 shrink-0" />
-                                    <span className="truncate">{item.name}</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 mr-2 mt-1.5 transition-all group-hover:bg-[#29B6F6] group-hover:scale-125 shrink-0" />
+                                    <span className="break-words">{item.name}</span>
                                   </Link>
                                 ))}
                               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { 
   ChevronRight, Phone, Mail, Award, Menu, Users, Shield, ArrowRight, MapPin, User, Briefcase, Maximize, MessageSquare, CheckCircle2, Loader2, Building2, Home, HardHat
 } from 'lucide-react';
@@ -24,13 +24,20 @@ const maskVariants: Variants = {
   }),
 };
 
-function AnimatedCounter({ value, duration = 2 }: { value: string; duration?: number }) {
+function AnimatedCounter({ value, duration = 1 }: { value: string; duration?: number }) {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
   const [displayValue, setDisplayValue] = useState(0);
   const numericMatch = value.match(/\d+/);
   const targetNumber = numericMatch ? parseInt(numericMatch[0], 10) : 0;
   const suffix = value.replace(/\d+/g, '');
 
   useEffect(() => {
+    if (!isInView) {
+      setDisplayValue(0);
+      return;
+    }
+
     let startTimestamp: number | null = null;
     let animationFrameId: number;
 
@@ -47,10 +54,10 @@ function AnimatedCounter({ value, duration = 2 }: { value: string; duration?: nu
 
     animationFrameId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [targetNumber, duration]);
+  }, [isInView, targetNumber, duration]);
 
   return (
-    <span>
+    <span ref={ref}>
       {displayValue}
       {suffix}
     </span>
@@ -283,7 +290,7 @@ export default function SEQServicesLanding() {
           <motion.div 
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto"
           >
@@ -297,7 +304,7 @@ export default function SEQServicesLanding() {
                 className="bg-[#eaf2fb] rounded-2xl p-5 sm:p-6 md:p-7 border-2 border-slate-800 shadow-[0_4px_0_#0F172A] flex flex-col items-center justify-center text-center transform hover:-translate-y-1 transition-all duration-300"
               >
                 <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0288D1] tracking-tight mb-1">
-                  <AnimatedCounter value={stat.value} />
+                  <AnimatedCounter value={stat.value} duration={1} />
                 </span>
                 <span className="text-xs sm:text-sm font-bold text-[#0B1221] leading-tight">
                   {stat.label}

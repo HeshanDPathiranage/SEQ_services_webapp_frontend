@@ -42,9 +42,9 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="text-[#334155] text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-8 max-w-2xl text-justify"
+              className="text-[#334155] text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-8 max-w-2xl text-left"
             >
-              We understand the operational, compliance, and scheduling questions commercial clients face. Explore clear answers regarding our commercial cleaning, biohazard protocols, safety standards, and pricing across Queensland.
+              We understand the operational, compliance, and scheduling questions commercial clients face. Explore clear answers regarding our commercial cleaning, biohazard protocols, safety standards, and pricing across Australia.
             </motion.p>
 
             {/* Quick Feature Badges */}
@@ -88,7 +88,7 @@ export default function FAQPage() {
                   <span>SEQ Support Specialists</span>
                 </div>
                 <h3 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl font-bold">Have Questions About Your Facility?</h3>
-                <p className="text-slate-200 text-sm sm:text-base md:text-lg font-light mt-2 text-justify">Our customer service team is on call to assist with quotes & custom cleaning plans.</p>
+                <p className="text-slate-200 text-sm sm:text-base md:text-lg font-light mt-2 text-left">Our customer service team is on call to assist with quotes & custom cleaning plans.</p>
               </div>
             </div>
           </motion.div>

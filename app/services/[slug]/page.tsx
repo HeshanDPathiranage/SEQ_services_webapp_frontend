@@ -107,10 +107,13 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           <div className="bg-white p-8 sm:p-10 md:p-12 rounded-3xl border border-[#E2E8F0] shadow-lg relative overflow-hidden flex flex-col items-center text-center justify-between gap-8">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#29B6F6] via-[#00a8cc] to-[#29B6F6]" />
             
-            <div className="max-w-3xl text-center mx-auto">
+            <div className="max-w-3xl text-center mx-auto space-y-1.5">
               <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#0B1221] mb-3 text-center">Request a Custom Quote</h3>
+              <p className="text-base sm:text-lg text-[#4A5568] font-medium text-center">
+                Need customised pricing for <strong>{service.title}</strong>?
+              </p>
               <p className="text-base sm:text-lg text-[#4A5568] font-light text-center">
-                Need customized pricing for <strong>{service.title}</strong>? Speak with our operational specialists today for a tailored proposal.
+                Speak with our operational specialists today for a tailored proposal.
               </p>
             </div>
 

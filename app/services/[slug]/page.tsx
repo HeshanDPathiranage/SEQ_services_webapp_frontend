@@ -24,22 +24,22 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
       {/* Hero Header */}
       <section className="relative pt-32 pb-12 px-6 bg-white overflow-hidden border-b border-[#E2E8F0]">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#29B6F6] rounded-full blur-[150px] opacity-[0.03] -mr-72 -mt-72 pointer-events-none" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center justify-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-[#29B6F6]/10 text-[#29B6F6] text-xs font-bold tracking-widest uppercase mb-4 sm:mb-6"
+            className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-[#29B6F6]/10 text-[#29B6F6] text-xs font-bold tracking-widest uppercase mb-4 sm:mb-6 text-center mx-auto"
           >
             {service.categoryTitle || 'Commercial Services'}
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#0B1221] leading-tight tracking-tight mb-4 sm:mb-6"
+            className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#0B1221] leading-tight tracking-tight mb-4 sm:mb-6 text-center"
           >
             {service.title}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-base sm:text-lg md:text-xl text-[#4A5568] font-light max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-[#4A5568] font-light max-w-3xl mx-auto leading-relaxed text-center"
           >
             {service.shortDesc}
           </motion.p>

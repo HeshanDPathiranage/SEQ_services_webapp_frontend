@@ -364,8 +364,8 @@ export default function SEQServicesLanding() {
       <section id="services" className="py-14 sm:py-24 px-4 sm:px-6 relative bg-white border-b border-slate-100">
         <div className="w-full max-w-[1920px] mx-auto lg:px-12 xl:px-20">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-[#0B1221] mb-3 sm:mb-4 tracking-tight">Our Capabilities</h2>
-            <p className="text-[#334155] text-lg sm:text-xl font-medium">A comprehensive suite of commercial cleaning and maintenance solutions, delivered with precision.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-[#0B1221] mb-3 sm:mb-4 tracking-tight text-center">Our Capabilities</h2>
+            <p className="text-[#334155] text-lg sm:text-xl font-medium text-center mx-auto">A comprehensive suite of commercial cleaning and maintenance solutions, delivered with precision.</p>
           </div>
 
           {/* Category Selector Tabs with Horizontal Scroll on Mobile */}

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { 
-  ChevronRight, Phone, Mail, Award, Menu, Users, Shield, ArrowRight, MapPin, User, Briefcase, Maximize, MessageSquare, CheckCircle2, Loader2, Building2, Home, HardHat
+  ChevronRight, Phone, Mail, Award, Menu, Users, Shield, ArrowRight, MapPin, User, Briefcase, Maximize, MessageSquare, CheckCircle2, Loader2, Building2, Home, HardHat, Sparkles
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';

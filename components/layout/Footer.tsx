@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ChevronRight, Phone, Mail, ArrowRight } from 'lucide-react';
+import { ChevronRight, Phone, Mail, ArrowRight, MapPin } from 'lucide-react';
 import { CONTACT_INFO, SERVICES_DATA } from '../../lib/data';
 
 export function Footer() {
@@ -87,84 +87,84 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Construction & Builders Cleaning */}
+          {/* Column 2: Construction & Builders Cleaning Services */}
           <div>
             <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-              Construction & Builders
+              <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+              <span>Construction & Builders Cleaning Services</span>
             </h4>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {constructionServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-start gap-1.5 group"
                   >
-                    <ChevronRight size={13} className="text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                    <span className="truncate">{service.title}</span>
+                    <ChevronRight size={13} className="text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5" />
+                    <span className="leading-snug">{service.title}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Commercial Services */}
+          {/* Column 3: Commercial Cleaning Services */}
           <div>
             <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#29B6F6]"></span>
-              Commercial
+              <span className="w-2 h-2 rounded-full bg-[#29B6F6] shrink-0"></span>
+              <span>Commercial Cleaning Services</span>
             </h4>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {commercialServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-start gap-1.5 group"
                   >
-                    <ChevronRight size={13} className="text-[#29B6F6] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                    <span className="truncate">{service.title}</span>
+                    <ChevronRight size={13} className="text-[#29B6F6] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5" />
+                    <span className="leading-snug">{service.title}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Bio Cleaning */}
+          {/* Column 4: Bio Cleaning Services */}
           <div>
             <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              Biohazard & Trauma
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+              <span>Bio Cleaning Services</span>
             </h4>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {bioServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-start gap-1.5 group"
                   >
-                    <ChevronRight size={13} className="text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                    <span className="truncate">{service.title}</span>
+                    <ChevronRight size={13} className="text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5" />
+                    <span className="leading-snug">{service.title}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 5: Residential Services */}
+          {/* Column 5: Residential Cleaning Services */}
           <div>
             <h4 className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3 pb-1 border-b border-white/20 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-sky-400"></span>
-              Residential
+              <span className="w-2 h-2 rounded-full bg-sky-400 shrink-0"></span>
+              <span>Residential Cleaning Services</span>
             </h4>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {residentialServices.map((service) => (
                 <li key={service.id}>
                   <Link 
                     href={`/services/${service.id}`} 
-                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-center gap-1.5 group"
+                    className="text-slate-300 hover:text-[#29B6F6] transition-all duration-200 text-xs sm:text-sm font-medium flex items-start gap-1.5 group"
                   >
-                    <ChevronRight size={13} className="text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                    <span className="truncate">{service.title}</span>
+                    <ChevronRight size={13} className="text-sky-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5" />
+                    <span className="leading-snug">{service.title}</span>
                   </Link>
                 </li>
               ))}
@@ -174,13 +174,13 @@ export function Footer() {
         </div>
 
         {/* Compact Contact Bar */}
-        <div className="bg-white/10 border border-white/15 rounded-xl px-5 py-3 mb-5 flex flex-wrap justify-between items-center gap-3 text-xs sm:text-sm">
-          <div className="flex flex-wrap items-center gap-5 text-slate-200">
+        <div className="bg-white/10 border border-white/15 rounded-xl px-5 py-3.5 mb-5 flex flex-wrap justify-between items-center gap-4 text-xs sm:text-sm">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-slate-200">
             <a 
               href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} 
               className="flex items-center gap-2 hover:text-blue-300 transition-colors"
             >
-              <Phone size={15} className="text-[#29B6F6]" />
+              <Phone size={15} className="text-[#29B6F6] shrink-0" />
               <span className="text-slate-300 text-xs font-medium">24/7 Hotline:</span>
               <span className="font-bold text-white text-xs sm:text-sm">{CONTACT_INFO.phone}</span>
             </a>
@@ -191,10 +191,18 @@ export function Footer() {
               href={`mailto:${CONTACT_INFO.email}`} 
               className="flex items-center gap-2 hover:text-blue-300 transition-colors"
             >
-              <Mail size={15} className="text-[#29B6F6]" />
+              <Mail size={15} className="text-[#29B6F6] shrink-0" />
               <span className="text-slate-300 text-xs font-medium">Email:</span>
               <span className="font-bold text-white text-xs sm:text-sm">{CONTACT_INFO.email}</span>
             </a>
+
+            <div className="hidden sm:block w-px h-4 bg-white/20" />
+
+            <div className="flex items-center gap-2 text-slate-200">
+              <MapPin size={15} className="text-[#29B6F6] shrink-0" />
+              <span className="text-slate-300 text-xs font-medium">Address:</span>
+              <span className="font-bold text-white text-xs sm:text-sm">{CONTACT_INFO.address}</span>
+            </div>
           </div>
 
           <div className="flex gap-5 text-xs sm:text-sm text-white font-semibold">

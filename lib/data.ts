@@ -1,7 +1,7 @@
 export const CONTACT_INFO = {
   phone: "1300 211 231",
   email: "admin@seqservices.com.au",
-  address: "274 Beatty Rd, Archerfield QLD 4108",
+  address: "274 Beatty Road, Archerfield QLD 4108 Australia",
   accreditations: ["QBCC", "Fair Work Commission", "cm3"],
   socials: {
     facebook: {
@@ -25,9 +25,8 @@ export const GROUPED_SERVICES = [
     ]
   },
   {
-    category: "Commercial Services",
+    category: "Commercial Cleaning Services",
     items: [
-      { name: "Commercial Cleaning", link: "/services/commercial-cleaning" },
       { name: "Carpet Cleaning", link: "/services/commercial-carpet-cleaning" },
       { name: "Pressure Cleaning", link: "/services/commercial-pressure-cleaning" },
       { name: "Event Cleaning", link: "/services/event-cleaning" },
@@ -47,7 +46,7 @@ export const GROUPED_SERVICES = [
     ]
   },
   {
-    category: "Residential Services",
+    category: "Residential Cleaning Services",
     items: [
       { name: "Carpet Cleaning", link: "/services/residential-carpet-cleaning" },
       { name: "Builders Clean (New Home Builds)", link: "/services/builders-clean-new-home-builds" },
@@ -117,23 +116,10 @@ export type ServiceData = {
 export const SERVICES_DATA: ServiceData[] = [
   // CATEGORY 1: COMMERCIAL SERVICES
   {
-    id: "commercial-cleaning",
-    title: "Commercial Cleaning",
-    category: "commercial",
-    categoryTitle: "Commercial Services",
-    shortDesc: "Commercial Cleaning experts providing a range of professional commercial cleaning services to business owners and facility managers throughout Logan City, Ipswich, Gold Coast and Sunshine Coast.",
-    image: "/images/service_commercial_hd.jpg",
-    longDesc: [
-      "Commercial Cleaning experts providing a range of professional commercial cleaning services to business owners and facility managers throughout Logan City, Ipswich, Gold Coast and Sunshine Coast. Our Commercial Cleaning Services range from builders cleans through to scheduled office cleans. Consider SEQ Services as your next cleaning contractors for metropolitan, regional, and remote areas, because we offer a personalised cleaning service designed to support clients of all shapes and sizes.",
-      "Hire commercial cleaning staff that are highly skilled, trained, and accredited with the latest industry standards to ensure your premises are cleaned to the highest level. SEQ Services have an exemplary safety record where safety always comes first. SEQ Services carry all the required insurances and certifications to work with Schools, Offices, Hospitals and Factories of any scale so get in touch with our team today to find out how we can help."
-    ],
-    features: []
-  },
-  {
     id: "commercial-carpet-cleaning",
     title: "Carpet Cleaning",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "SEQ Services provides professional commercial carpet cleaning services that help maintain clean, hygienic, and welcoming workplaces across Australia.",
     image: "/images/service_carpet_hd.jpg",
     longDesc: [
@@ -160,9 +146,9 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "commercial-pressure-cleaning",
     title: "Pressure Cleaning",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "Restore the appearance, safety, and value of your property with SEQ Services' professional commercial pressure cleaning services.",
-    image: "/images/service_pressure_1784363408044.png",
+    image: "/images/service_pressure_hd.jpg",
     longDesc: [
       "Pressure Cleaning Brisbane, with a Team you can trust to get it right! Hire SEQ Services for your regular facility maintenance or to achieve a deep clean using a well respected Brisbane commercial cleaning company. If your facility is now due for some TLC, SEQ Services is a reliable high pressure cleaning company that stands out from the rest because we have pride in what we do and enjoy leaving every completed project knowing it’s another job well done!",
       "SEQ Services offer fast pressure cleaning quotes throughout Brisbane, Logan City, Ipswich, Gold Coast and Sunshine Coast. SEQ Services are very organised, and we understand our client’s needs which is why Body Corporate, Estate Owners and Property Developers enjoy dealing with our highly reviewed pressure cleaning services.",
@@ -193,7 +179,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "event-cleaning",
     title: "Event Cleaning",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "SEQ Services provides professional event cleaning and waste management services for events of all sizes across Australia.",
     image: "/images/service_event_hd.jpg",
     longDesc: [
@@ -222,7 +208,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "industrial-abseiling",
     title: "Industrial Abseiling",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "SEQ Services provides professional industrial abseiling and rope access services for high-rise buildings and difficult-to-access structures across Australia.",
     image: "/images/service_abseiling_1784363475346.png",
     longDesc: [
@@ -248,7 +234,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "sweeping-and-scrubbing",
     title: "Sweeping & Scrubbing",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "Keep your facilities clean, safe, and well-presented with SEQ Services' professional sweeping and scrubbing services.",
     image: "/images/service_sweep_1784363501929.png",
     longDesc: [
@@ -280,7 +266,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "office-cleaning",
     title: "Office Cleaning",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "A clean, hygienic workplace creates a healthier environment for employees, enhances your professional image, and leaves a lasting impression on clients and visitors.",
     image: "/images/service_office_1784363523583.png",
     longDesc: [
@@ -314,7 +300,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "commercial-window-cleaning",
     title: "Window Cleaning",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "Enhance the appearance of your property with SEQ Services' professional commercial window cleaning services.",
     image: "/images/service_window_1784363598846.png",
     longDesc: [
@@ -347,7 +333,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "warehouse-cleaning",
     title: "Warehouse Cleaning",
     category: "commercial",
-    categoryTitle: "Commercial Services",
+    categoryTitle: "Commercial Cleaning Services",
     shortDesc: "SEQ Services provides professional warehouse cleaning services that help businesses maintain clean, safe, and efficient working environments across Australia.",
     image: "/images/service_warehouse.jpg",
     longDesc: [
@@ -455,7 +441,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "residential-carpet-cleaning",
     title: "Carpet Cleaning",
     category: "residential",
-    categoryTitle: "Residential Services",
+    categoryTitle: "Residential Cleaning Services",
     shortDesc: "SEQ Services provides professional residential carpet cleaning services that help keep your home fresh, hygienic, and looking its best.",
     image: "/images/service_residential_carpet.jpg",
     longDesc: [
@@ -480,7 +466,7 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "builders-clean-new-home-builds",
     title: "Builders Clean (New Home Builds)",
     category: "residential",
-    categoryTitle: "Residential Services",
+    categoryTitle: "Residential Cleaning Services",
     shortDesc: "SEQ Services provides professional builders cleaning services for newly constructed homes across Australia.",
     image: "/images/service_builders_handover.jpg",
     longDesc: [
@@ -506,9 +492,9 @@ export const SERVICES_DATA: ServiceData[] = [
     id: "driveway-outdoor-surface-cleaning",
     title: "Driveway & Outdoor Surface Cleaning",
     category: "residential",
-    categoryTitle: "Residential Services",
+    categoryTitle: "Residential Cleaning Services",
     shortDesc: "SEQ Services provides professional driveway and outdoor surface cleaning services that restore the appearance of your home's exterior.",
-    image: "/images/service_pressure_1784363408044.png",
+    image: "/images/service_pressure_hd.jpg",
     longDesc: [
       "SEQ Services provides professional driveway and outdoor surface cleaning services that restore the appearance of your home's exterior. Using commercial-grade pressure cleaning equipment, we safely remove built-up dirt, mould, mildew, algae, stains, and grime from a wide range of outdoor surfaces.",
       "Regular outdoor surface cleaning not only improves your property's street appeal but also helps maintain safe, slip-resistant surfaces while protecting them from long-term deterioration. Whether you're preparing your home for sale or simply maintaining your property, our team delivers reliable, high-quality results every time.",
@@ -626,72 +612,72 @@ export const FAQ_DATA: FAQItem[] = [
   {
     id: "faq-1",
     category: "general",
-    categoryLabel: "General Questions",
-    question: "What geographical areas does SEQ Services cover?",
-    answer: "SEQ Services proudly operates throughout South East Queensland—including Greater Brisbane, Gold Coast, Sunshine Coast, Ipswich, Toowoomba, and Logan—as well as regional Queensland. We have dedicated teams and rapid response vehicles ready to service commercial properties across the state."
+    categoryLabel: "General",
+    question: "Do You Provide Services Australia-Wide?",
+    answer: "Yes. SEQ Services proudly delivers commercial cleaning, residential cleaning, Builders cleaning, bio cleaning, and specialist facility services Australia-wide. From single-site projects to multi-location contracts, our experienced team provides safe, reliable, and professional cleaning solutions tailored to the unique needs of businesses, homeowners, property managers, builders, and organisations."
   },
   {
     id: "faq-2",
     category: "general",
-    categoryLabel: "General Questions",
-    question: "Are your cleaning staff insured, background-checked, and accredited?",
-    answer: "Yes, 100%. All SEQ Services personnel undergo comprehensive background checks, police checks, and rigorous site-safety training. We hold QBCC licensing, full public liability insurance ($20M), Workers' Compensation, and cm3 safety pre-qualification accreditation."
+    categoryLabel: "General",
+    question: "What Types of Cleaning Services Do You Provide?",
+    answer: "SEQ Services offers a comprehensive range of commercial, residential, bio cleaning, and specialist facility services across Australia. Our capabilities include commercial and office cleaning, construction cleaning, carpet cleaning, pressure cleaning, window cleaning, event cleaning, industrial abseiling, biohazard cleaning, mould remediation, property recovery, environmental decontamination, and more. Every service is tailored to meet the unique needs of our clients."
   },
   {
     id: "faq-3",
     category: "general",
-    categoryLabel: "General Questions",
-    question: "Can cleaning be scheduled after-hours or on weekends?",
-    answer: "Absolutely. We understand that commercial cleaning must never interrupt your day-to-day operations. We offer flexible 24/7 cleaning schedules including late nights, early mornings, weekends, and public holidays."
+    categoryLabel: "General",
+    question: "Do You Offer One-Off and Ongoing Cleaning Services?",
+    answer: "Yes. We provide both one-off cleaning services and scheduled cleaning programmes. Whether you require a single deep clean, post-construction cleaning, emergency bio cleaning, or a long-term cleaning contract, we can develop a solution that suits your requirements, schedule, and budget."
   },
   {
     id: "faq-4",
     category: "commercial",
     categoryLabel: "Commercial Cleaning",
-    question: "Do you provide your own cleaning supplies and heavy equipment?",
-    answer: "Yes. SEQ Services arrives fully equipped with commercial-grade HEPA vacuum systems, industrial scrubbers, pressure washers, abseiling safety gear, and eco-friendly GECA-approved cleaning chemicals. You don't need to provide any equipment or supplies."
+    question: "Can You Provide a Tailored Cleaning Solution?",
+    answer: "Absolutely. We understand that no two sites are the same. Our team will assess your requirements and develop a customised cleaning solution based on your facility, operational needs, frequency, and compliance requirements to ensure the best possible outcome."
   },
   {
     id: "faq-5",
-    category: "commercial",
-    categoryLabel: "Commercial Cleaning",
-    question: "What types of commercial facilities do you service?",
-    answer: "We service a broad range of commercial environments including office buildings, corporate headquarters, retail centres, medical centres, educational institutions, construction sites, industrial warehouses, high-rise residential complexes, and event venues."
+    category: "general",
+    categoryLabel: "General",
+    question: "Are Your Cleaning Staff Fully Trained and Insured?",
+    answer: "Yes. Our team consists of trained, experienced, and fully insured cleaning professionals who follow industry best practices and strict safety procedures. We are committed to delivering high-quality services while maintaining a safe working environment for our clients, staff, and the public."
   },
   {
     id: "faq-6",
-    category: "commercial",
-    categoryLabel: "Commercial Cleaning",
-    question: "How do you ensure quality control across ongoing cleaning contracts?",
-    answer: "We utilize dedicated site supervisors, regular quality audits, digital sign-off checklists, and a direct account manager for every client. If any aspect of our service falls short of our stringent standards, we rectify it within 24 hours."
+    category: "bio",
+    categoryLabel: "Biohazard & Specialist",
+    question: "Do You Provide Emergency Bio Cleaning Services?",
+    answer: "Yes. Our specialist Bio Cleaning team responds to a range of sensitive situations, including biohazard cleaning, trauma and crime scene cleaning, deceased estate cleaning, hoarder and squalor cleaning, mould remediation, smoke and fire damage restoration, and environmental decontamination. We handle every situation with professionalism, discretion, and compassion."
   },
   {
     id: "faq-7",
-    category: "bio",
-    categoryLabel: "Biohazard & Specialist",
-    question: "What qualifies SEQ Services to handle Biohazard & Trauma cleans?",
-    answer: "Biohazard and trauma cleaning require specialized training, certified PPE, hazardous waste transport permits, and strict adherence to Workplace Health & Safety regulations. Our technicians are fully trained in bloodborne pathogen protocols, chemical decontamination, and compassionate crime/trauma scene restoration."
+    category: "commercial",
+    categoryLabel: "Commercial Cleaning",
+    question: "Which Industries Do You Work With?",
+    answer: "SEQ Services supports a diverse range of industries, including commercial offices, construction, retail, healthcare, education, industrial facilities, government organisations, body corporates, property managers, residential clients, and event venues. We tailor our services to meet the operational and compliance requirements of each industry."
   },
   {
     id: "faq-8",
-    category: "bio",
-    categoryLabel: "Biohazard & Specialist",
-    question: "How fast can you respond to an emergency biohazard situation?",
-    answer: "We maintain a 24/7 rapid emergency response dispatch line. In urgent biohazard, flood damage, or trauma situations in SEQ, our mobile response unit aims to be on-site as quickly as possible—typically within 1 to 2 hours."
+    category: "general",
+    categoryLabel: "General",
+    question: "Do You Use Safe and Environmentally Responsible Cleaning Products?",
+    answer: "Yes. Wherever practical, we use high-quality cleaning products and proven cleaning methods that are safe, effective, and environmentally responsible. Our approach helps maintain healthy environments while delivering outstanding cleaning results."
   },
   {
     id: "faq-9",
     category: "pricing",
     categoryLabel: "Pricing & Quotes",
-    question: "How do I request a free quote for my property?",
-    answer: "You can request a free, no-obligation quotation by filling out the online Quote Request form at the bottom of our website, or by calling our friendly team directly on 1300 211 231. We can provide rapid estimates or schedule a complimentary site walkthrough."
+    question: "How Do I Request a Cleaning Quote?",
+    answer: "Getting started is easy. Simply complete our online enquiry form, call our team, or send us an email. We'll discuss your requirements, arrange a site assessment if required, and provide a tailored, no-obligation quotation based on your specific cleaning needs."
   },
   {
     id: "faq-10",
-    category: "pricing",
-    categoryLabel: "Pricing & Quotes",
-    question: "Are your contracts flexible or are we locked into long-term agreements?",
-    answer: "We offer tailored service agreements to suit your needs. Whether you require a one-off deep clean, a short-term construction project handover, or an ongoing monthly facility maintenance contract, we offer transparent terms with no hidden fees."
+    category: "general",
+    categoryLabel: "General",
+    question: "Why Choose SEQ Services?",
+    answer: "SEQ Services combines industry experience, professional expertise, and a commitment to quality to deliver reliable cleaning solutions across Australia. We pride ourselves on providing tailored services, responsive customer support, trained professionals, and consistent results for commercial, residential, and specialist cleaning projects of every size."
   }
 ];
 

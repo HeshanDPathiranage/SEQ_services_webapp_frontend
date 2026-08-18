@@ -70,58 +70,60 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
         
         {/* Full-Width Service Overview & Features */}
         <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="w-full">
-          <div className="bg-white p-6 sm:p-10 md:p-12 rounded-3xl border border-[#E2E8F0] shadow-sm w-full">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#0B1221] mb-6">Service Overview</h2>
-            {service.longDesc && service.longDesc.length > 0 ? (
-              service.longDesc.map((paragraph, pIdx) => (
-                <p key={pIdx} className="text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed mb-8">
-                  {paragraph}
+          <div className="bg-white p-6 sm:p-10 md:p-12 rounded-3xl border border-[#E2E8F0] shadow-sm w-full text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#0B1221] mb-6 text-center">Service Overview</h2>
+            <div className="max-w-4xl mx-auto">
+              {service.longDesc && service.longDesc.length > 0 ? (
+                service.longDesc.map((paragraph, pIdx) => (
+                  <p key={pIdx} className="text-[#334155] text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-6 text-center">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="text-[#334155] text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-6 text-center">
+                  {service.shortDesc}
                 </p>
-              ))
-            ) : (
-              <p className="text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed mb-8">
-                {service.shortDesc}
-              </p>
-            )}
+              )}
+            </div>
             
             {service.features && service.features.length > 0 && (
-              <>
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0B1221] mt-10 mb-6">Key Service Inclusions</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="mt-12 pt-8 border-t border-slate-100">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0B1221] mb-8 text-center">Key Service Inclusions</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
                   {service.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#29B6F6]/40 hover:shadow-sm transition-all">
-                      <CheckCircle2 size={20} className="text-[#29B6F6] shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-center justify-center text-center gap-3 p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#29B6F6]/40 hover:shadow-sm transition-all">
+                      <CheckCircle2 size={20} className="text-[#29B6F6] shrink-0" />
                       <span className="text-sm sm:text-base text-[#0B1221] font-medium">{feat}</span>
                     </div>
                   ))}
                 </div>
-              </>
+              </div>
             )}
           </div>
         </motion.div>
 
         {/* Full-Width Request a Quote Banner Card */}
         <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="w-full">
-          <div className="bg-white p-8 sm:p-10 md:p-12 rounded-3xl border border-[#E2E8F0] shadow-lg relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="bg-white p-8 sm:p-10 md:p-12 rounded-3xl border border-[#E2E8F0] shadow-lg relative overflow-hidden flex flex-col items-center text-center justify-between gap-8">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#29B6F6] via-[#00a8cc] to-[#29B6F6]" />
             
-            <div className="max-w-2xl text-center lg:text-left">
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#0B1221] mb-3">Request a Custom Quote</h3>
-              <p className="text-base sm:text-lg text-[#4A5568] font-light">
+            <div className="max-w-3xl text-center mx-auto">
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#0B1221] mb-3 text-center">Request a Custom Quote</h3>
+              <p className="text-base sm:text-lg text-[#4A5568] font-light text-center">
                 Need customized pricing for <strong>{service.title}</strong>? Speak with our operational specialists today for a tailored proposal.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto shrink-0">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full shrink-0">
               <Link
                 href="/#quote"
-                className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-[#29B6F6] text-white font-bold text-sm sm:text-base hover:bg-[#2563EB] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#29B6F6]/25"
+                className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-[#29B6F6] text-white font-bold text-sm sm:text-base hover:bg-[#2563EB] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#29B6F6]/25 text-center"
               >
                 Get Custom Quote <ArrowRight size={18} />
               </Link>
               <a 
                 href="tel:1300211231" 
-                className="w-full sm:w-auto py-4 px-6 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0B1221] font-semibold text-sm sm:text-base hover:bg-slate-100 transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto py-4 px-6 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0B1221] font-semibold text-sm sm:text-base hover:bg-slate-100 transition-all flex items-center justify-center gap-2 text-center"
               >
                 <Phone size={18} className="text-[#29B6F6]" />
                 1300 211 231

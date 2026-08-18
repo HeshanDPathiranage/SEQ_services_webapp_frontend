@@ -7,10 +7,10 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2, ChevronRight, Shield, Phone, Mail, Sparkles, Building2, Briefcase, Home, HardHat } from 'lucide-react';
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "Commercial Services": <Briefcase size={18} />,
+  "Construction & Builders Cleaning Services": <HardHat size={18} />,
+  "Commercial Cleaning Services": <Briefcase size={18} />,
   "Bio Cleaning Services": <Shield size={18} />,
-  "Residential Services": <Home size={18} />,
-  "Construction & Builders Cleaning Services": <HardHat size={18} />
+  "Residential Cleaning Services": <Home size={18} />
 };
 
 export default function ServicesPage() {
@@ -19,9 +19,9 @@ export default function ServicesPage() {
   const categories = [
     { id: "all", label: "All Services" },
     { id: "construction", label: "Construction & Builders Cleaning Services" },
-    { id: "commercial", label: "Commercial Services" },
+    { id: "commercial", label: "Commercial Cleaning Services" },
     { id: "bio", label: "Bio Cleaning Services" },
-    { id: "residential", label: "Residential Services" }
+    { id: "residential", label: "Residential Cleaning Services" }
   ];
 
   const filteredServices = selectedCategory === "all"
@@ -48,13 +48,13 @@ export default function ServicesPage() {
             transition={{ delay: 0.1, duration: 0.6 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-[#0B1221] leading-tight tracking-tight mb-6"
           >
-            Commercial Cleaning & Facility Services Across Queensland
+            Commercial Cleaning Services Across Australia
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 15 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-xl md:text-2xl lg:text-3xl text-[#334155] font-normal max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-[#334155] font-normal max-w-3xl mx-auto leading-relaxed"
           >
             Tailored, fully compliant cleaning and facility support designed to protect your operational standards and site compliance.
           </motion.p>
@@ -91,43 +91,40 @@ export default function ServicesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
-                className="bg-white rounded-3xl p-8 border border-[#E2E8F0] shadow-sm hover:shadow-xl hover:border-[#29B6F6]/30 transition-all duration-300 flex flex-col justify-between group"
               >
-                <div>
-                  {service.image && (
-                    <div className="w-full h-48 rounded-2xl overflow-hidden mb-6 relative bg-slate-100">
-                      <img 
-                        src={service.image} 
-                        alt={service.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                      />
-                    </div>
-                  )}
-                  
-                  <h3 className="text-2xl font-serif font-bold text-[#0B1221] mb-3 group-hover:text-[#29B6F6] transition-colors">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-[#334155] text-base sm:text-lg leading-relaxed mb-6 font-normal">
-                    {service.shortDesc}
-                  </p>
-
-                  <div className="space-y-2 mb-8">
-                    {service.features?.slice(0, 3).map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2.5 text-xs text-[#4A5568]">
-                        <CheckCircle2 size={15} className="text-[#29B6F6] shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
                 <Link
                   href={`/services/${service.id}`}
-                  className="w-full py-3.5 px-6 rounded-2xl bg-[#F8FAFC] text-[#0B1221] font-semibold text-sm hover:bg-[#29B6F6] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group/btn border border-[#E2E8F0] hover:border-[#29B6F6]"
+                  className="bg-white rounded-3xl p-8 border border-[#E2E8F0] shadow-sm hover:shadow-xl hover:border-[#29B6F6]/30 transition-all duration-300 flex flex-col justify-between group h-full block text-center"
                 >
-                  View Details
-                  <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                  <div>
+                    {service.image && (
+                      <div className="w-full h-48 rounded-2xl overflow-hidden mb-6 relative bg-slate-100">
+                        <img 
+                          src={service.image} 
+                          alt={service.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                      </div>
+                    )}
+                    
+                    <h3 className="text-2xl font-serif font-bold text-[#0B1221] mb-3 group-hover:text-[#29B6F6] transition-colors text-center flex items-center justify-center gap-2">
+                      <span>{service.title}</span>
+                      <ArrowRight size={18} className="text-[#29B6F6] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all shrink-0" />
+                    </h3>
+                    
+                    <p className="text-[#334155] text-base sm:text-lg leading-relaxed mb-6 font-normal text-center">
+                      {service.shortDesc}
+                    </p>
+
+                    <div className="space-y-2 flex flex-col items-center">
+                      {service.features?.slice(0, 3).map((feat, fIdx) => (
+                        <div key={fIdx} className="flex items-center justify-center gap-2 text-xs text-[#4A5568] text-center">
+                          <CheckCircle2 size={15} className="text-[#29B6F6] shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </Link>
               </motion.div>
             ))}

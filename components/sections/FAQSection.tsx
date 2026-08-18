@@ -164,7 +164,7 @@ export function FAQSection({ showTitle = true, className = "" }: FAQSectionProps
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       >
                         <div className="px-6 pb-8 md:px-8 md:pb-8 pt-0 border-t border-white/20">
-                          <div className="pt-5 text-white text-lg md:text-xl lg:text-2xl leading-relaxed font-normal">
+                          <div className="pt-5 text-white text-base sm:text-lg md:text-xl leading-relaxed font-normal text-justify">
                             {faq.answer}
                           </div>
                           <div className="mt-6 flex items-center gap-2">
@@ -195,21 +195,19 @@ export function FAQSection({ showTitle = true, className = "" }: FAQSectionProps
           )}
         </div>
 
-        {/* Bottom "Still have questions?" Banner */}
-        <div className="mt-16 pt-10 border-t border-slate-200/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 text-left max-w-2xl">
-            <h3 className="text-2xl md:text-4xl font-serif font-bold text-slate-900">
-              Still have questions?
-            </h3>
-            <p className="text-slate-700 text-base md:text-lg lg:text-xl font-medium leading-relaxed">
-              If you have any other questions or need further information, don't hesitate to contact us. We are here to help you!
+        {/* Bottom "Still have questions?" Single-Line Banner */}
+        <div className="mt-16 pt-10 border-t border-slate-200/80 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div className="flex-1 text-left">
+            <p className="text-slate-900 text-base sm:text-lg lg:text-xl leading-relaxed text-justify">
+              <strong className="font-serif font-bold text-slate-900 text-lg sm:text-xl lg:text-2xl mr-2 inline">Still have questions?</strong>
+              <span className="text-slate-700 font-medium">If you have any other questions or need further information, don&apos;t hesitate to contact us. We are here to help you!</span>
             </p>
           </div>
 
           <div className="flex items-center gap-4 shrink-0">
             <Link
               href="/#quote"
-              className="px-8 py-4 rounded-xl bg-[#0B1221] hover:bg-[#29B6F6] text-white text-base md:text-lg font-bold shadow-lg transition-all duration-300 hover:scale-[1.02]"
+              className="px-8 py-4 rounded-xl bg-[#0B1221] hover:bg-[#29B6F6] text-white text-base md:text-lg font-bold shadow-lg transition-all duration-300 hover:scale-[1.02] shrink-0"
             >
               Get in touch
             </Link>

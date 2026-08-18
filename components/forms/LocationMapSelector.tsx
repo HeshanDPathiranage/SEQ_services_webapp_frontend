@@ -38,6 +38,8 @@ function MapUpdater({ center }: { center: [number, number] | null }) {
   return null;
 }
 
+import { findLocalSuburb, formatLocation, searchSuburbs } from '../../lib/locations';
+
 export default function LocationMapSelector({ onSelectLocation, onClose }: LocationMapSelectorProps) {
   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
   const [address, setAddress] = useState<string>('');
@@ -46,19 +48,45 @@ export default function LocationMapSelector({ onSelectLocation, onClose }: Locat
   const [isSearching, setIsSearching] = useState(false);
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null);
 
+  const formatGeocodedAddress = (addressObj: any, displayName = ''): string => {
+    if (!addressObj) return displayName || 'Location not found';
+
+    const suburb = addressObj.suburb || 
+                   addressObj.neighbourhood || 
+                   addressObj.city_district || 
+                   addressObj.city || 
+                   addressObj.town || 
+                   addressObj.village || 
+                   addressObj.county || '';
+
+    const state = addressObj.state_code || (addressObj.state === 'Queensland' ? 'QLD' : addressObj.state || 'QLD');
+    let postcode = addressObj.postcode || '';
+
+    // If postcode was not provided by API, check our local Queensland / AU database
+    if (!postcode && suburb) {
+      const localMatch = findLocalSuburb(suburb);
+      if (localMatch) {
+        postcode = localMatch.postcode;
+      }
+    }
+
+    if (suburb && postcode) {
+      return `${suburb}, ${state} ${postcode}`;
+    }
+    if (suburb) {
+      return `${suburb}, ${state}`;
+    }
+    return displayName || 'Location not found';
+  };
+
   const handleMapClick = async (lat: number, lng: number) => {
     setPosition({ lat, lng });
     setLoading(true);
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10`);
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=16&addressdetails=1`);
       const data = await response.json();
       if (data && data.address) {
-        const city = data.address.city || data.address.town || data.address.village || data.address.county || data.address.state_district || '';
-        const state = data.address.state || '';
-        const country = data.address.country || '';
-        
-        const parts = [city, state, country].filter(Boolean);
-        setAddress(parts.join(', '));
+        setAddress(formatGeocodedAddress(data.address, data.display_name));
       } else {
         setAddress('Location not found');
       }
@@ -73,27 +101,30 @@ export default function LocationMapSelector({ onSelectLocation, onClose }: Locat
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
+
+    // Check local database first for fast match
+    const localMatch = findLocalSuburb(searchQuery.trim());
+    if (localMatch) {
+      const formatted = `${localMatch.suburb}, ${localMatch.state} ${localMatch.postcode}`;
+      setAddress(formatted);
+    }
+
     setIsSearching(true);
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&addressdetails=1`);
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery + ', Australia')}&addressdetails=1&countrycodes=au`);
       const data = await response.json();
       if (data && data.length > 0) {
         const lat = parseFloat(data[0].lat);
         const lon = parseFloat(data[0].lon);
         setPosition({ lat, lng: lon });
         setMapCenter([lat, lon]);
-        
-        const city = data[0].address?.city || data[0].address?.town || data[0].address?.village || data[0].address?.county || data[0].address?.state_district || '';
-        const state = data[0].address?.state || '';
-        const country = data[0].address?.country || '';
-        const parts = [city, state, country].filter(Boolean);
-        setAddress(parts.length > 0 ? parts.join(', ') : data[0].display_name);
-      } else {
+        setAddress(formatGeocodedAddress(data[0].address, data[0].display_name));
+      } else if (!localMatch) {
         setAddress('Location not found');
       }
     } catch (error) {
       console.error('Search error:', error);
-      setAddress('Error searching location');
+      if (!localMatch) setAddress('Error searching location');
     } finally {
       setIsSearching(false);
     }

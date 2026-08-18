@@ -7,6 +7,7 @@ import 'react-phone-number-input/style.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { enquirySchema, EnquirySchemaValues } from '../../lib/validations';
 import { GROUPED_SERVICES } from '../../lib/data';
+import { searchSuburbs, findLocalSuburb, SuburbData } from '../../lib/locations';
 import dynamic from 'next/dynamic';
 import { MapPin, User, Mail, Briefcase, Maximize, MessageSquare, ArrowRight, Loader2 } from 'lucide-react';
 
@@ -18,6 +19,8 @@ export function EnquiryForm() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [isMapOpen, setIsMapOpen] = useState(false);
+  const [locationSuggestions, setLocationSuggestions] = useState<SuburbData[]>([]);
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
 
   const {
     register,
@@ -135,15 +138,42 @@ export function EnquiryForm() {
         </label>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-6 relative z-30">
         <label className="space-y-2 text-base sm:text-lg font-extrabold text-slate-900 group block">
           <span>Location / Suburb *</span>
           <div className="relative">
             <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand transition-colors" size={20} />
             <input
-              {...register('location')}
+              {...register('location', {
+                onChange: (e) => {
+                  const val = e.target.value;
+                  const matches = searchSuburbs(val, 6);
+                  setLocationSuggestions(matches);
+                  setShowLocationDropdown(matches.length > 0);
+                },
+                onBlur: (e) => {
+                  const val = e.target.value;
+                  setTimeout(() => {
+                    setShowLocationDropdown(false);
+                    if (val && !/\d{4}/.test(val)) {
+                      const match = findLocalSuburb(val);
+                      if (match) {
+                        setValue('location', `${match.suburb}, ${match.state} ${match.postcode}`, { shouldValidate: true });
+                      }
+                    }
+                  }, 250);
+                }
+              })}
+              onFocus={(e) => {
+                if (e.target.value) {
+                  const matches = searchSuburbs(e.target.value, 6);
+                  setLocationSuggestions(matches);
+                  setShowLocationDropdown(matches.length > 0);
+                }
+              }}
+              autoComplete="off"
               className="w-full rounded-2xl border border-slate-200/80 bg-slate-50/50 pl-12 pr-12 py-4 sm:py-4.5 text-base sm:text-lg font-semibold text-slate-900 transition-all duration-300 placeholder:text-slate-400 hover:border-slate-300 focus:border-brand focus:bg-white focus:ring-4 focus:ring-brand/10 focus:outline-none shadow-sm"
-              placeholder="Suburb / City / Postcode"
+              placeholder="Start typing Suburb (e.g. Archerfield, Southport, Chermside...)"
             />
             <button 
               type="button" 
@@ -153,6 +183,37 @@ export function EnquiryForm() {
             >
               <MapPin size={20} className="text-brand transition-transform group-hover/btn:scale-110" />
             </button>
+
+            {/* Live Suburb & Postcode Autocomplete Dropdown */}
+            {showLocationDropdown && locationSuggestions.length > 0 && (
+              <div className="absolute left-0 top-full mt-1.5 w-full bg-white rounded-2xl border border-slate-200 shadow-2xl py-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="px-3 py-1.5 text-[11px] font-bold text-slate-600 uppercase tracking-wider border-b border-slate-100 flex items-center justify-between">
+                  <span>Matching Suburbs</span>
+                  <span>Postal Code</span>
+                </div>
+                {locationSuggestions.map((item, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onMouseDown={() => {
+                      setValue('location', `${item.suburb}, ${item.state} ${item.postcode}`, { shouldValidate: true });
+                      setShowLocationDropdown(false);
+                    }}
+                    className="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-blue-50/80 transition-colors border-b border-slate-50 last:border-none group/item"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <MapPin size={16} className="text-brand shrink-0 group-hover/item:scale-110 transition-transform" />
+                      <span className="font-bold text-slate-900 text-sm sm:text-base">
+                        {item.suburb}, <span className="text-slate-500 font-semibold">{item.state}</span>
+                      </span>
+                    </div>
+                    <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 group-hover/item:bg-brand group-hover/item:text-white font-mono text-xs sm:text-sm font-extrabold transition-colors">
+                      {item.postcode}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
           {errors.location && <span className="text-xs sm:text-sm font-medium text-rose-500 mt-1 block">{errors.location.message}</span>}
         </label>

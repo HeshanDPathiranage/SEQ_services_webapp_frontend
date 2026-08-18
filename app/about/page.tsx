@@ -24,7 +24,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#0B1221] leading-tight tracking-tight mb-6"
           >
-            Commercial Cleaning Services Across Queensland and Australia
+            Commercial Cleaning Services Across Australia
           </motion.h1>
           <motion.div 
             initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
@@ -52,7 +52,7 @@ export default function AboutPage() {
 
       {/* Main Text Content */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-12 xl:px-20 relative z-10 max-w-[1920px] mx-auto">
-        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="w-full bg-white p-8 sm:p-12 rounded-3xl border border-[#E2E8F0] shadow-sm space-y-8 text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed">
+        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="w-full bg-white p-8 sm:p-12 rounded-3xl border border-[#E2E8F0] shadow-sm space-y-6 text-[#334155] text-base sm:text-lg md:text-xl font-normal leading-relaxed">
           <p className="leading-relaxed">{ABOUT_DATA.intro1}</p>
           <p className="leading-relaxed">{ABOUT_DATA.intro2}</p>
         </motion.div>

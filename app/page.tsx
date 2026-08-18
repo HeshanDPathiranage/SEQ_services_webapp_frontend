@@ -8,6 +8,7 @@ import {
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { HOME_DATA, SERVICES_DATA, GROUPED_SERVICES } from '../lib/data';
+import { searchSuburbs, findLocalSuburb, SuburbData } from '../lib/locations';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { GoogleReCaptcha } from '../components/forms/GoogleReCaptcha';
@@ -151,6 +152,8 @@ export default function SEQServicesLanding() {
   const [messageValue, setMessageValue] = useState('');
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [locationValue, setLocationValue] = useState('');
+  const [locationSuggestions, setLocationSuggestions] = useState<SuburbData[]>([]);
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
   const [recaptchaTokenValue, setRecaptchaTokenValue] = useState<string>('');
   const [captchaMsg, setCaptchaMsg] = useState('');
@@ -251,6 +254,16 @@ export default function SEQServicesLanding() {
 
         <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 mt-6 sm:mt-10 lg:mt-0">
           <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/95 border border-blue-200 text-[#0288D1] text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-3 sm:mb-4 shadow-sm"
+            >
+              <Sparkles size={15} className="text-[#29B6F6]" />
+              <span>Professional Commercial & Specialist Cleaning Services</span>
+            </motion.div>
+
             <div className="min-h-[160px] sm:h-48 md:h-64 relative mb-4 sm:mb-6">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -264,7 +277,7 @@ export default function SEQServicesLanding() {
                   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#0B1221] leading-[1.15] sm:leading-[1.1] tracking-tight mb-3 sm:mb-4">
                     {HOME_DATA.heroHeadlines[currentHeadline]}
                   </h1>
-                  <p className="text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed">
+                  <p className="text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed text-center">
                     {HOME_DATA.heroSubtitles[currentHeadline]}
                   </p>
                 </motion.div>
@@ -329,7 +342,7 @@ export default function SEQServicesLanding() {
       <section className="py-6 sm:py-10 bg-slate-50/70 border-b border-slate-200/80 overflow-hidden relative">
         <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 mb-3 sm:mb-4">
           <p className="text-center text-[10px] sm:text-xs font-bold tracking-widest text-slate-400 uppercase">
-            Trusted by Queensland's Leading Commercial & Construction Brands
+            Trusted by Leading Commercial & Construction Brands Across Australia
           </p>
         </div>
         
@@ -358,10 +371,10 @@ export default function SEQServicesLanding() {
           {/* Category Selector Tabs with Horizontal Scroll on Mobile */}
           <div className="flex overflow-x-auto custom-scrollbar pb-2 sm:pb-0 sm:flex-wrap items-center justify-start sm:justify-center gap-2.5 sm:gap-4 mb-8 sm:mb-14 -mx-4 px-4 sm:mx-0 sm:px-0">
             {[
-              { id: 'construction', label: 'CONSTRUCTION CLEANING SERVICES', icon: HardHat },
-              { id: 'commercial', label: 'COMMERCIAL SERVICES', icon: Building2 },
+              { id: 'construction', label: 'CONSTRUCTION & BUILDERS CLEANING SERVICES', icon: HardHat },
+              { id: 'commercial', label: 'COMMERCIAL CLEANING SERVICES', icon: Building2 },
               { id: 'bio', label: 'BIO CLEANING SERVICES', icon: Shield },
-              { id: 'residential', label: 'RESIDENTIAL SERVICES', icon: Home },
+              { id: 'residential', label: 'RESIDENTIAL CLEANING SERVICES', icon: Home },
             ].map((cat) => {
               const Icon = cat.icon;
               const isCatActive = selectedCategory === cat.id;
@@ -410,7 +423,7 @@ export default function SEQServicesLanding() {
                         : "text-slate-700 hover:text-[#0B1221] hover:bg-slate-50 border border-transparent"
                     }`}
                   >
-                    <span>{service.title}</span>
+                    <span className="leading-snug break-words">{service.title}</span>
                   </button>
                 );
               })}
@@ -432,16 +445,16 @@ export default function SEQServicesLanding() {
                     alt={activeService.title} 
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221]/95 via-[#0B1221]/50 to-transparent flex flex-col justify-end p-6 sm:p-10 md:p-14 text-white z-10">
-                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-3 sm:mb-4 tracking-tight">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221]/95 via-[#0B1221]/50 to-transparent flex flex-col justify-end items-center text-center p-6 sm:p-10 md:p-14 text-white z-10">
+                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-3 sm:mb-4 tracking-tight text-center">
                       {activeService.title}
                     </h3>
-                    <p className="text-slate-100 text-sm sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mb-5 sm:mb-7 line-clamp-3 sm:line-clamp-none">
+                    <p className="text-slate-100 text-sm sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mb-5 sm:mb-7 line-clamp-3 sm:line-clamp-none text-center">
                       {activeService.shortDesc}
                     </p>
                     <Link 
                       href={`/services/${activeService.id}`} 
-                      className="px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-[#29B6F6] hover:bg-[#2563EB] text-white font-bold text-sm sm:text-base transition-all inline-flex items-center gap-2 self-start shadow-xl group/btn"
+                      className="px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-[#29B6F6] hover:bg-[#2563EB] text-white font-bold text-sm sm:text-base transition-all inline-flex items-center gap-2 self-center shadow-xl group/btn"
                     >
                       Learn More <ChevronRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
@@ -461,20 +474,20 @@ export default function SEQServicesLanding() {
           <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:w-1/2 flex flex-col justify-center">
             <div className="w-full h-72 sm:h-96 md:h-[420px] lg:h-[460px] mb-6 sm:mb-8 rounded-3xl sm:rounded-[2.5rem] overflow-hidden relative shadow-[0_20px_50px_rgba(0,51,102,0.12)] border border-slate-200/90 group">
                <img 
-                 src="/images/contact_side_image.png" 
+                 src="/images/about_team_hd.jpg" 
                  alt="SEQ Services Commercial Cleaning Team" 
-                 className="w-full h-full object-cover img-enhanced transform group-hover:scale-105 transition-transform duration-700" 
+                 className="w-full h-full object-cover object-top filter brightness-[1.03] contrast-[1.06] transform group-hover:scale-105 transition-transform duration-700" 
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221]/80 via-[#0B1221]/20 to-transparent flex flex-col justify-end p-6 sm:p-8 md:p-10">
+               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221]/85 via-[#0B1221]/15 to-transparent flex flex-col justify-end p-6 sm:p-8 md:p-10">
                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white text-xs sm:text-sm font-semibold self-start mb-3 border border-white/30">
                    <span className="w-2.5 h-2.5 rounded-full bg-[#29B6F6] animate-pulse" />
-                   <span>SEQ Professional Operations</span>
+                   <span>Premium Cleaning Services</span>
                  </div>
                  <h3 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl font-bold">Premium Commercial Cleaning Services</h3>
                </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0B1221] mb-4 sm:mb-6 tracking-tight leading-tight">Request Your Free Commercial Cleaning Quote</h2>
-            <p className="text-[#334155] text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10 font-normal leading-relaxed">Looking for reliable, professional commercial cleaning services? Complete the form below and our team will contact you to discuss your requirements and provide a tailored, no-obligation cleaning quote.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0B1221] mb-4 sm:mb-6 tracking-tight leading-tight">Request Your Free Cleaning Quote</h2>
+            <p className="text-[#334155] text-base sm:text-lg md:text-xl mb-6 sm:mb-10 font-normal leading-relaxed">Looking for reliable, professional commercial cleaning services? Complete the form below and our team will contact you to discuss your requirements and provide a tailored, no-obligation cleaning quote.</p>
           </motion.div>
           
           <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:w-1/2 w-full">
@@ -546,7 +559,7 @@ export default function SEQServicesLanding() {
                 </label>
               </div>
               
-              <div className="mb-5 sm:mb-7 relative z-10">
+              <div className="mb-5 sm:mb-7 relative z-30">
                 <label className="space-y-2 text-base sm:text-lg font-extrabold text-slate-900 group block">
                   <span>Location / Suburb *</span>
                   <div className="relative">
@@ -555,13 +568,70 @@ export default function SEQServicesLanding() {
                       type="text" 
                       required
                       value={locationValue}
-                      onChange={(e) => setLocationValue(e.target.value)}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setLocationValue(val);
+                        const matches = searchSuburbs(val, 6);
+                        setLocationSuggestions(matches);
+                        setShowLocationDropdown(matches.length > 0);
+                      }}
+                      onFocus={() => {
+                        if (locationValue) {
+                          const matches = searchSuburbs(locationValue, 6);
+                          setLocationSuggestions(matches);
+                          setShowLocationDropdown(matches.length > 0);
+                        }
+                      }}
+                      onBlur={() => {
+                        // Auto-fill postal code if user entered just suburb name
+                        setTimeout(() => {
+                          setShowLocationDropdown(false);
+                          if (locationValue && !/\d{4}/.test(locationValue)) {
+                            const match = findLocalSuburb(locationValue);
+                            if (match) {
+                              setLocationValue(`${match.suburb}, ${match.state} ${match.postcode}`);
+                            }
+                          }
+                        }, 250);
+                      }}
                       className="w-full rounded-2xl border border-slate-200 bg-slate-50/70 pl-12 pr-12 py-4 sm:py-4.5 text-base sm:text-lg font-semibold text-slate-900 transition-all duration-300 placeholder:text-slate-400 placeholder:font-normal hover:border-slate-300 focus:border-[#29B6F6] focus:bg-white focus:ring-4 focus:ring-[#29B6F6]/10 focus:outline-none shadow-sm" 
-                      placeholder="Suburb / City / Postcode" 
+                      placeholder="Start typing Suburb (e.g. Archerfield, Southport, Chermside...)" 
+                      autoComplete="off"
                     />
                     <button type="button" onClick={() => setIsMapOpen(true)} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#29B6F6] hover:bg-[#29B6F6]/5 transition-colors bg-white p-2 rounded-xl shadow-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#29B6F6]/20 z-10 group/btn" title="Select on map">
                       <MapPin size={20} className="text-[#29B6F6] transition-transform group-hover/btn:scale-110" />
                     </button>
+
+                    {/* Live Suburb & Postcode Autocomplete Dropdown */}
+                    {showLocationDropdown && locationSuggestions.length > 0 && (
+                      <div className="absolute left-0 top-full mt-1.5 w-full bg-white rounded-2xl border border-slate-200 shadow-2xl py-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="px-3 py-1.5 text-[11px] font-bold text-slate-600 uppercase tracking-wider border-b border-slate-100 flex items-center justify-between">
+                          <span>Matching Suburbs</span>
+                          <span>Postal Code</span>
+                        </div>
+                        {locationSuggestions.map((item, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            onMouseDown={() => {
+                              setLocationValue(`${item.suburb}, ${item.state} ${item.postcode}`);
+                              setShowLocationDropdown(false);
+                            }}
+                            className="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-blue-50/80 transition-colors border-b border-slate-50 last:border-none group/item"
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <MapPin size={16} className="text-[#29B6F6] shrink-0 group-hover/item:scale-110 transition-transform" />
+                              <span className="font-bold text-slate-900 text-sm sm:text-base">
+                                {item.suburb}, <span className="text-slate-500 font-semibold">{item.state}</span>
+                              </span>
+                            </div>
+                            <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 group-hover/item:bg-[#29B6F6] group-hover/item:text-white font-mono text-xs sm:text-sm font-extrabold transition-colors">
+                              {item.postcode}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </label>
               </div>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, Building2, Briefcase, Home, Phone, ArrowRight, ShieldCheck, Clock, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronDown, Building2, Briefcase, Home, Phone, ArrowRight, ShieldCheck, Clock, Sparkles, HardHat } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GROUPED_SERVICES, CONTACT_INFO } from '../../lib/data';
 
@@ -37,11 +37,11 @@ export function Header() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-slate-300">
               <ShieldCheck size={16} className="text-[#29B6F6]" />
-              <span>QBCC & cm3 Accredited Commercial Cleaners</span>
+              <span>Professional Commercial & Specialist Cleaning Services</span>
             </span>
             <span className="hidden lg:flex items-center gap-1.5 text-slate-300">
               <Clock size={16} className="text-emerald-400" />
-              <span>24/7 Rapid Emergency Response</span>
+              <span>QBCC & cm3 Accredited Cleaners</span>
             </span>
           </div>
 
@@ -126,7 +126,7 @@ export function Header() {
                             <div key={idx} className="flex flex-col min-w-0">
                               <div className="flex items-center gap-2.5 mb-3.5 pb-3 border-b border-slate-200/80">
                                 <div className="w-9 h-9 rounded-xl bg-blue-50/80 text-[#29B6F6] flex items-center justify-center shrink-0 shadow-sm border border-blue-100">
-                                  {idx === 0 ? <Briefcase size={20} /> : idx === 1 ? <Building2 size={20} /> : idx === 2 ? <ShieldCheck size={20} /> : <Home size={20} />}
+                                  {idx === 0 ? <HardHat size={20} /> : idx === 1 ? <Building2 size={20} /> : idx === 2 ? <ShieldCheck size={20} /> : <Home size={20} />}
                                 </div>
                                 <h4 className="text-xs sm:text-sm font-extrabold text-[#29B6F6] uppercase tracking-wider leading-snug">{group.category}</h4>
                               </div>

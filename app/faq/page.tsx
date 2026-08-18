@@ -42,7 +42,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="text-[#334155] text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed mb-8 max-w-2xl text-left"
+              className="text-[#334155] text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-8 max-w-2xl text-justify"
             >
               We understand the operational, compliance, and scheduling questions commercial clients face. Explore clear answers regarding our commercial cleaning, biohazard protocols, safety standards, and pricing across Queensland.
             </motion.p>
@@ -78,9 +78,9 @@ export default function FAQPage() {
           >
             <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[580px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200/90 group">
               <img 
-                src="/images/contact_side_image.png" 
+                src="/images/about_team_hd.jpg" 
                 alt="SEQ Services Commercial Cleaning Team" 
-                className="w-full h-full object-cover img-enhanced transform group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-top filter brightness-[1.03] contrast-[1.06] transform group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221]/80 via-[#0B1221]/20 to-transparent flex flex-col justify-end p-8 sm:p-10">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white text-xs sm:text-sm font-semibold self-start mb-3 border border-white/30">
@@ -88,18 +88,7 @@ export default function FAQPage() {
                   <span>SEQ Support Specialists</span>
                 </div>
                 <h3 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl font-bold">Have Questions About Your Facility?</h3>
-                <p className="text-slate-200 text-sm sm:text-base md:text-lg font-light mt-2">Our customer service team is on call to assist with quotes & custom cleaning plans.</p>
-              </div>
-            </div>
-
-            {/* Floating Glassmorphism Phone Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-xl p-5 rounded-2xl shadow-xl border border-slate-200/90 hidden sm:flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#29B6F6] text-white flex items-center justify-center shadow-md shrink-0">
-                <Phone size={24} />
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Direct Support Line</p>
-                <p className="text-base sm:text-lg font-bold text-slate-900">{CONTACT_INFO.phone}</p>
+                <p className="text-slate-200 text-sm sm:text-base md:text-lg font-light mt-2 text-justify">Our customer service team is on call to assist with quotes & custom cleaning plans.</p>
               </div>
             </div>
           </motion.div>

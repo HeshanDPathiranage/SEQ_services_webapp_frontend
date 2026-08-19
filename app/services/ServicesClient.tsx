@@ -26,9 +26,9 @@ export function ServicesClient() {
 
   const filteredGroupedServices = GROUPED_SERVICES.map(group => {
     if (selectedCategory === "all") return group;
-    const catId = group.title.includes("Construction") ? "construction" :
-                  group.title.includes("Commercial") ? "commercial" :
-                  group.title.includes("Bio") ? "bio" : "residential";
+    const catId = group.category.includes("Construction") ? "construction" :
+                  group.category.includes("Commercial") ? "commercial" :
+                  group.category.includes("Bio") ? "bio" : "residential";
     return catId === selectedCategory ? group : null;
   }).filter(Boolean);
 
@@ -99,14 +99,14 @@ export function ServicesClient() {
                 {/* Category Header */}
                 <div className="flex items-center gap-4 border-b border-[#E2E8F0] pb-4">
                   <div className="w-12 h-12 rounded-xl bg-[#29B6F6]/10 text-[#29B6F6] flex items-center justify-center">
-                    {categoryIcons[group.title] || <Briefcase size={22} />}
+                    {categoryIcons[group.category] || <Briefcase size={22} />}
                   </div>
                   <div>
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#0B1221]">
-                      {group.title}
+                      {group.category}
                     </h2>
                     <p className="text-sm sm:text-base text-slate-500 font-medium">
-                      Specialised cleaning solutions for {group.title.toLowerCase()}
+                      Specialised cleaning solutions for {group.category.toLowerCase()}
                     </p>
                   </div>
                 </div>

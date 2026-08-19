@@ -114,12 +114,13 @@ export function ServicesClient() {
                 {/* Service Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
                   {group.items.map((serviceItem, sIdx) => {
-                    const fullService = SERVICES_DATA.find(s => s.id === serviceItem.id);
+                    const serviceId = serviceItem.link.split('/').pop();
+                    const fullService = SERVICES_DATA.find(s => s.id === serviceId);
                     if (!fullService) return null;
 
                     return (
                       <motion.div
-                        key={serviceItem.id}
+                        key={serviceId}
                         initial={{ opacity: 0, y: 25 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}

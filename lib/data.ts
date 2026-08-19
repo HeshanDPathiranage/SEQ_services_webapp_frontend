@@ -67,15 +67,14 @@ export const HOME_DATA = {
     "Whether it's everyday cleaning or sensitive environments requiring specialist expertise, our trained teams deliver safe, compliant results you can depend on."
   ],
   introText: "More Than Cleaning. Complete Workplace Care. At SEQ Services, we do more than keep workplaces clean—we help organisations create safer, healthier and more productive environments. Combining commercial cleaning, specialist biohazard services and facility support, we deliver reliable solutions backed by experienced professionals, industry best practices and a commitment to exceptional service.",
-  logos: Array.from(new Set([
-    "https://memarcg.com/wp-content/uploads/2025/09/Memar-Construction-Group.png",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Colliers_logo.svg/1280px-Colliers_logo.svg.png",
-    "https://cdn.worldvectorlogo.com/logos/john-holland.svg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrT4CrvKloEXuNaws6CT0mt7rbaYc5jJHPM96fq5OI2w&s=10",
-    "https://coast2coast.com.au/wp/wp-content/uploads/2014/08/00d9b1e39f02d57be65ad2a9a6eaa3b8.jpg",
-    "https://media.licdn.com/dms/image/v2/C4D0BAQF0vfoVkn_Q_w/company-logo_200_200/company-logo_200_200/0/1631329812433?e=2147483647&v=beta&t=9i7oza0Ll_REH2YT0pYKYMpO-ZzfnEb-dc9MEqSAe8U",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD_Blg0--KR2Es9tBufsdoUi-eOxRp5joFOKLUg4XG4w&s=10"
-  ]))
+  logos: [
+    "/images/logos/memar.svg",
+    "/images/logos/colliers.svg",
+    "/images/logos/john-holland.svg",
+    "/images/logos/buildcorp.svg",
+    "/images/logos/coast2coast.svg",
+    "/images/logos/condev.svg"
+  ]
 };
 
 export const ABOUT_DATA = {

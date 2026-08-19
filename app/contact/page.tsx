@@ -3,8 +3,16 @@ import { EnquiryForm } from '../../components/forms/EnquiryForm';
 import { PageHeading } from '../../components/sections/PageHeading';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Request a Free Commercial Cleaning Quote',
-  description: 'Get in touch with SEQ Services for commercial cleaning, biohazard remediation, and facility management quotes across Queensland.',
+  title: 'Contact SEQ Services | Request a Free Cleaning Quote',
+  description: 'Contact SEQ Services to discuss your cleaning requirements or request a fast, tailored quote for your commercial or specialist facility.',
+  alternates: {
+    canonical: 'https://seqservices.com.au/contact',
+  },
+  openGraph: {
+    title: 'Contact SEQ Services | Request a Free Cleaning Quote',
+    description: 'Contact SEQ Services to discuss your cleaning requirements or request a fast, tailored quote for your commercial or specialist facility.',
+    url: 'https://seqservices.com.au/contact',
+  },
 };
 
 export default function ContactPage() {

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, Building2, Briefcase, Home, Phone, ArrowRight, ShieldCheck, Clock, Sparkles, HardHat } from 'lucide-react';
+import { Menu, X, ChevronDown, Building2, Briefcase, Home, Phone, ArrowRight, ShieldCheck, Sparkles, HardHat } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GROUPED_SERVICES, CONTACT_INFO } from '../../lib/data';
 
@@ -38,10 +38,6 @@ export function Header() {
             <span className="flex items-center gap-1.5 text-slate-300">
               <ShieldCheck size={16} className="text-[#29B6F6]" />
               <span>Professional Commercial & Specialist Cleaning Services</span>
-            </span>
-            <span className="hidden lg:flex items-center gap-1.5 text-slate-300">
-              <Clock size={16} className="text-emerald-400" />
-              <span>QBCC & cm3 Accredited Cleaners</span>
             </span>
           </div>
 

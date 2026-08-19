@@ -11,26 +11,17 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif'
 
 export const metadata: Metadata = {
   title: {
-    default: 'SEQ Services | Commercial Cleaning & Facility Management Queensland',
+    default: 'Professional Commercial & Specialist Cleaning Services Across Australia | SEQ Services',
     template: '%s | SEQ Services'
   },
-  description: 'SEQ Services provides QBCC & cm3 accredited commercial cleaning, biohazard remediation, construction cleaning, and facility management across SEQ, Brisbane, Gold Coast & Sunshine Coast.',
-  keywords: [
-    'Commercial Cleaning Queensland',
-    'Facility Management SEQ',
-    'Construction Cleaning Brisbane',
-    'Biohazard Cleaning Gold Coast',
-    'QBCC Accredited Cleaners',
-    'cm3 Certified Commercial Cleaning',
-    'SEQ Services'
-  ],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://seqservices.com.au'),
+  description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia. Request a free, no-obligation quote today.',
+  metadataBase: new URL('https://seqservices.com.au'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://seqservices.com.au',
   },
   openGraph: {
-    title: 'SEQ Services | Commercial Cleaning & Facility Management Queensland',
-    description: 'QBCC & cm3 accredited commercial cleaning, trauma remediation, and builder cleaning across South East Queensland.',
+    title: 'Professional Commercial & Specialist Cleaning Services Across Australia | SEQ Services',
+    description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia.',
     url: 'https://seqservices.com.au',
     siteName: 'SEQ Services Integrated Solutions',
     locale: 'en_AU',
@@ -46,16 +37,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SEQ Services | Commercial Cleaning & Facility Management',
-    description: 'QBCC & cm3 accredited commercial cleaning across SEQ & Regional Queensland.',
+    title: 'Professional Commercial & Specialist Cleaning Services Across Australia | SEQ Services',
+    description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia.',
     images: ['/images/hero-office.png'],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -66,7 +57,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`} suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
       <body className="bg-slate-50 text-[#4A5568] font-sans antialiased selection:bg-[#29B6F6]/10 selection:text-[#0B1221] overflow-x-hidden" suppressHydrationWarning>
         <JsonLdSchema />
         <Providers>

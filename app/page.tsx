@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { 
-  ChevronRight, Phone, Mail, Award, Menu, Users, Shield, ArrowRight, MapPin, User, Briefcase, Maximize, MessageSquare, CheckCircle2, Loader2, Building2, Home, HardHat, Sparkles
+  ChevronRight, Phone, Mail, Award, Menu, Users, Shield, ArrowRight, MapPin, User, Briefcase, Maximize, MessageSquare, CheckCircle2, Loader2, Building2, Home, HardHat
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -92,43 +92,14 @@ function getLogoScale(url: string): string {
 }
 
 function LogoCard({ logoUrl }: { logoUrl: string }) {
-  const [imgSrc, setImgSrc] = useState(logoUrl);
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(() => {
-    setImgSrc(logoUrl);
-    setHasError(false);
-  }, [logoUrl]);
-
-  if (hasError) return null;
-
   return (
     <div 
       className="w-[180px] sm:w-[230px] md:w-[270px] h-24 sm:h-28 md:h-32 px-3 sm:px-5 py-2 flex items-center justify-center bg-transparent shrink-0 overflow-hidden group hover:scale-105 transition-transform duration-300"
     >
       <img 
-        src={imgSrc} 
+        src={logoUrl} 
         alt="Partner Brand Logo" 
-        className={`h-16 sm:h-20 md:h-24 w-auto max-w-[95%] max-h-[92%] object-contain mix-blend-multiply transition-transform duration-300 ${getLogoScale(imgSrc)}`}
-        onError={() => {
-          if (logoUrl.includes('Lendlease') && imgSrc !== '/images/logos/lendlease.svg') {
-            setImgSrc('/images/logos/lendlease.svg');
-          } else if (logoUrl.includes('Multiplex') && imgSrc !== '/images/logos/multiplex.svg') {
-            setImgSrc('/images/logos/multiplex.svg');
-          } else if (logoUrl.includes('colliers') && imgSrc !== '/images/logos/colliers.svg') {
-            setImgSrc('/images/logos/colliers.svg');
-          } else if (logoUrl.includes('john-holland') && imgSrc !== '/images/logos/john-holland.svg') {
-            setImgSrc('/images/logos/john-holland.svg');
-          } else if (logoUrl.includes('ANd9GcTrT4CrvKloEXuNaws6CT0mt7rbaYc5jJHPM96fq5OI2w') && imgSrc !== '/images/logos/hutchinson.svg') {
-            setImgSrc('/images/logos/hutchinson.svg');
-          } else if (logoUrl.includes('memarcg') && imgSrc !== '/images/logos/memar.svg') {
-            setImgSrc('/images/logos/memar.svg');
-          } else if ((logoUrl.includes('buildcorp') || logoUrl.includes('licdn') || logoUrl.includes('company-logo')) && imgSrc !== '/images/logos/buildcorp.svg') {
-            setImgSrc('/images/logos/buildcorp.svg');
-          } else {
-            setHasError(true);
-          }
-        }}
+        className={`h-16 sm:h-20 md:h-24 w-auto max-w-[95%] max-h-[92%] object-contain mix-blend-multiply transition-transform duration-300 ${getLogoScale(logoUrl)}`}
       />
     </div>
   );
@@ -254,17 +225,10 @@ export default function SEQServicesLanding() {
 
         <div className="relative z-10 w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 mt-6 sm:mt-10 lg:mt-0">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/95 border border-blue-200 text-[#0288D1] text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-3 sm:mb-4 shadow-sm"
-            >
-              <Sparkles size={15} className="text-[#29B6F6]" />
-              <span>Professional Commercial & Specialist Cleaning Services</span>
-            </motion.div>
-
-            <div className="min-h-[160px] sm:h-48 md:h-64 relative mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#0B1221] leading-[1.15] sm:leading-[1.1] tracking-tight mb-4 sm:mb-6">
+              Professional Commercial & Specialist Cleaning Services Across Australia
+            </h1>
+            <div className="min-h-[100px] sm:h-28 relative mb-4 sm:mb-6">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentHeadline}
@@ -274,10 +238,7 @@ export default function SEQServicesLanding() {
                   transition={{ duration: 0.5 }}
                   className="flex flex-col justify-center"
                 >
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#0B1221] leading-[1.15] sm:leading-[1.1] tracking-tight mb-3 sm:mb-4">
-                    {HOME_DATA.heroHeadlines[currentHeadline]}
-                  </h1>
-                  <p className="text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed text-center">
+                  <p className="text-[#334155] text-lg sm:text-xl md:text-2xl font-normal leading-relaxed">
                     {HOME_DATA.heroSubtitles[currentHeadline]}
                   </p>
                 </motion.div>
@@ -365,16 +326,16 @@ export default function SEQServicesLanding() {
         <div className="w-full max-w-[1920px] mx-auto lg:px-12 xl:px-20">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold text-[#0B1221] mb-3 sm:mb-4 tracking-tight text-center">Our Capabilities</h2>
-            <p className="text-[#334155] text-lg sm:text-xl font-medium text-center mx-auto">A comprehensive suite of commercial cleaning and maintenance solutions, delivered with precision.</p>
+            <p className="text-[#334155] text-lg sm:text-xl font-medium text-center mx-auto">Comprehensive cleaning and specialist service solutions, tailored to diverse environments and delivered with professionalism and precision</p>
           </div>
 
           {/* Category Selector Tabs with Horizontal Scroll on Mobile */}
-          <div className="flex overflow-x-auto custom-scrollbar pb-2 sm:pb-0 sm:flex-wrap items-center justify-start sm:justify-center gap-2.5 sm:gap-4 mb-8 sm:mb-14 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex overflow-x-auto custom-scrollbar pb-2 sm:pb-0 sm:flex-nowrap items-center justify-start sm:justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-14 -mx-4 px-4 sm:mx-0 sm:px-0">
             {[
-              { id: 'construction', label: 'CONSTRUCTION & BUILDERS CLEANING SERVICES', icon: HardHat },
-              { id: 'commercial', label: 'COMMERCIAL CLEANING SERVICES', icon: Building2 },
-              { id: 'bio', label: 'BIO CLEANING SERVICES', icon: Shield },
-              { id: 'residential', label: 'RESIDENTIAL CLEANING SERVICES', icon: Home },
+              { id: 'construction', label: 'CONSTRUCTION & BUILDERS CLEANING', icon: HardHat },
+              { id: 'commercial', label: 'COMMERCIAL CLEANING', icon: Building2 },
+              { id: 'bio', label: 'BIO CLEANING', icon: Shield },
+              { id: 'residential', label: 'RESIDENTIAL CLEANING', icon: Home },
             ].map((cat) => {
               const Icon = cat.icon;
               const isCatActive = selectedCategory === cat.id;
@@ -386,18 +347,18 @@ export default function SEQServicesLanding() {
                     const firstInCat = SERVICES_DATA.find(s => s.category === cat.id);
                     if (firstInCat) setActiveTab(firstInCat.id);
                   }}
-                  className={`p-2.5 sm:p-3 pr-5 sm:pr-7 rounded-xl sm:rounded-2xl flex items-center gap-2.5 sm:gap-3.5 transition-all duration-300 shrink-0 ${
+                  className={`p-2 sm:p-2.5 pr-4 sm:pr-5 lg:pr-6 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 transition-all duration-300 shrink-0 ${
                     isCatActive
                       ? "bg-white shadow-md border border-blue-200 ring-2 ring-[#29B6F6]/10"
                       : "bg-slate-50/80 hover:bg-white border border-slate-200/60"
                   }`}
                 >
-                  <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors ${
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors ${
                     isCatActive ? "bg-blue-50 text-[#29B6F6]" : "bg-slate-200/60 text-slate-500"
                   }`}>
-                    <Icon size={20} className="sm:w-6 sm:h-6" />
+                    <Icon size={18} className="sm:w-5 sm:h-5" />
                   </div>
-                  <span className={`text-xs sm:text-sm md:text-base font-extrabold tracking-wider uppercase whitespace-nowrap ${
+                  <span className={`text-xs sm:text-xs md:text-sm font-extrabold tracking-wider uppercase whitespace-nowrap ${
                     isCatActive ? "text-[#29B6F6]" : "text-slate-700"
                   }`}>
                     {cat.label}
@@ -483,11 +444,11 @@ export default function SEQServicesLanding() {
                    <span className="w-2.5 h-2.5 rounded-full bg-[#29B6F6] animate-pulse" />
                    <span>Premium Cleaning Services</span>
                  </div>
-                 <h3 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl font-bold">Premium Commercial Cleaning Services</h3>
+                 <h3 className="text-white font-serif text-2xl sm:text-3xl md:text-4xl font-bold">Premium Cleaning Services</h3>
                </div>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#0B1221] mb-4 sm:mb-6 tracking-tight leading-tight">Request Your Free Cleaning Quote</h2>
-            <p className="text-[#334155] text-base sm:text-lg md:text-xl mb-6 sm:mb-10 font-normal leading-relaxed">Looking for reliable, professional commercial cleaning services? Complete the form below and our team will contact you to discuss your requirements and provide a tailored, no-obligation cleaning quote.</p>
+            <p className="text-[#334155] text-base sm:text-lg md:text-xl mb-6 sm:mb-10 font-normal leading-relaxed">Looking for reliable, professional cleaning services? Complete the form below and our team will contact you to discuss your requirements and provide a tailored, no-obligation cleaning quote.</p>
           </motion.div>
           
           <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:w-1/2 w-full">

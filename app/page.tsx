@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { HOME_DATA, SERVICES_DATA, GROUPED_SERVICES } from '../lib/data';
 import { searchSuburbs, findLocalSuburb, SuburbData } from '../lib/locations';
-import PhoneInput from 'react-phone-number-input';
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { GoogleReCaptcha } from '../components/forms/GoogleReCaptcha';
 
@@ -146,6 +146,13 @@ export default function SEQServicesLanding() {
 
     if (!nameValue || !emailValue || !phoneValue || !locationValue || !serviceCategoryValue || !serviceRequiredValue || !messageValue) {
       setStatusFeedback('Please fill in all required fields (Name, Phone, Email, Location, Service Category, Service Required, Message).');
+      setFormStatus('error');
+      return;
+    }
+
+    const phoneDigits = phoneValue ? phoneValue.replace(/\D/g, '') : '';
+    if (phoneValue && (!isValidPhoneNumber(phoneValue) || phoneDigits.length < 10)) {
+      setStatusFeedback('Please enter a valid phone number with at least 10 digits.');
       setFormStatus('error');
       return;
     }
@@ -371,20 +378,20 @@ export default function SEQServicesLanding() {
           {/* Capabilities Main Layout */}
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-stretch min-h-[380px] sm:min-h-[480px] lg:min-h-[550px]">
             {/* Left Sidebar Service List */}
-            <div className="lg:w-1/3 w-full pr-0 lg:pr-6 border-r-0 lg:border-r border-slate-200/80 space-y-2.5 min-h-[250px] sm:min-h-[450px] max-h-[550px] overflow-y-auto custom-scrollbar">
+            <div className="lg:w-1/3 w-full pr-0 lg:pr-6 border-r-0 lg:border-r border-slate-200/80 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto custom-scrollbar gap-2.5 lg:gap-0 lg:space-y-2.5 pb-4 lg:pb-0 mb-4 lg:mb-0 min-h-[auto] lg:min-h-[450px] lg:max-h-[550px] -mx-4 px-4 sm:mx-0 sm:px-0">
               {SERVICES_DATA.filter(s => s.category === selectedCategory).map((service) => {
                 const isActive = service.id === activeService.id;
                 return (
                   <button
                     key={service.id}
                     onClick={() => setActiveTab(service.id)}
-                    className={`w-full text-left py-3.5 sm:py-4 px-5 sm:px-7 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 flex items-center justify-between ${
+                    className={`shrink-0 lg:shrink w-auto lg:w-full text-left py-3.5 sm:py-4 px-5 sm:px-7 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 flex items-center justify-between ${
                       isActive
                         ? "bg-white text-[#0B1221] shadow-md sm:shadow-lg border border-slate-200/80 ring-1 ring-[#29B6F6]/20 font-bold"
                         : "text-slate-700 hover:text-[#0B1221] hover:bg-slate-50 border border-transparent"
                     }`}
                   >
-                    <span className="leading-snug break-words">{service.title}</span>
+                    <span className="leading-snug break-words whitespace-nowrap lg:whitespace-normal">{service.title}</span>
                   </button>
                 );
               })}

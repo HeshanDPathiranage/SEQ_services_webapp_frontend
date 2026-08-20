@@ -14,7 +14,7 @@ interface FAQSectionProps {
 export function FAQSection({ showTitle = true, className = "" }: FAQSectionProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [openFaqId, setOpenFaqId] = useState<string | null>(FAQ_DATA[0]?.id || null);
+  const [openFaqId, setOpenFaqId] = useState<string | null>(null);
 
   const categories = [
     { id: 'all', label: 'All Questions' },

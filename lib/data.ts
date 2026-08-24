@@ -103,6 +103,8 @@ export const ABOUT_DATA = {
 export type ServiceData = {
   id: string;
   title: string;
+  seoTitle?: string;
+  seoDescription?: string;
   category: 'commercial' | 'bio' | 'residential' | 'construction';
   categoryTitle: string;
   shortDesc: string;

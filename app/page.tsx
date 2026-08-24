@@ -343,8 +343,8 @@ export default function SEQServicesLanding() {
             <p className="text-[#334155] text-lg sm:text-xl font-medium text-center mx-auto">Comprehensive cleaning and specialist service solutions, tailored to diverse environments and delivered with professionalism and precision</p>
           </div>
 
-          {/* Category Selector Tabs with Horizontal Scroll on Mobile */}
-          <div className="flex overflow-x-auto custom-scrollbar pb-2 sm:pb-0 sm:flex-nowrap items-center justify-start sm:justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-14 -mx-4 px-4 sm:mx-0 sm:px-0">
+          {/* Category Selector Tabs - Stacked on Mobile */}
+          <div className="flex flex-col sm:flex-row sm:flex-nowrap items-stretch sm:items-center justify-start sm:justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-14 px-4 sm:px-0">
             {[
               { id: 'construction', label: 'CONSTRUCTION & BUILDERS CLEANING', icon: HardHat },
               { id: 'commercial', label: 'COMMERCIAL CLEANING', icon: Building2 },

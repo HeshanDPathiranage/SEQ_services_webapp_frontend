@@ -100,8 +100,10 @@ export function GoogleReCaptcha({ onVerify, isVerified }: GoogleReCaptchaProps) 
   }, [isVerified]);
 
   return (
-    <div className="my-4 flex flex-col items-start min-h-[78px] justify-center">
-      <div ref={containerRef} className="overflow-hidden rounded-md shadow-sm border border-slate-200/80 bg-slate-50" />
+    <div className="my-4 flex flex-col items-start min-h-[78px] justify-center w-full overflow-hidden">
+      <div className="origin-top-left sm:origin-center transform scale-[0.85] xs:scale-95 sm:scale-100 w-[304px]">
+        <div ref={containerRef} className="overflow-hidden rounded-md shadow-sm border border-slate-200/80 bg-slate-50 inline-block" />
+      </div>
       {!isLoaded && (
         <div className="text-xs text-slate-400 py-2 flex items-center gap-2">
           <div className="w-3.5 h-3.5 border-2 border-[#29B6F6] border-t-transparent rounded-full animate-spin" />

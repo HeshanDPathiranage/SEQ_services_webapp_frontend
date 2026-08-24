@@ -11,8 +11,8 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   const service = SERVICES_DATA.find((s) => s.id === params.slug);
   if (!service) return {};
 
-  const title = `${service.title} | Professional Cleaning Services | SEQ Services`;
-  const description = `Professional ${service.title} by SEQ Services. Compliant, reliable cleaning solutions tailored for commercial and specialist facilities across Australia.`;
+  const title = service.seoTitle ? `${service.seoTitle}` : `${service.title} Australia`;
+  const description = service.seoDescription ? service.seoDescription : `Professional ${service.title} by SEQ Services. Compliant, reliable cleaning solutions tailored for commercial and specialist facilities across Australia.`;
   const canonical = `https://seqservices.com.au/services/${service.id}`;
 
   return {

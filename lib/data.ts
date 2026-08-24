@@ -116,7 +116,9 @@ export const SERVICES_DATA: ServiceData[] = [
   // CATEGORY 1: COMMERCIAL SERVICES
   {
     id: "commercial-carpet-cleaning",
-    title: "Carpet Cleaning",
+    title: "Commercial Carpet Cleaning",
+    seoTitle: "Commercial Carpet Cleaning Australia | SEQ Services",
+    seoDescription: "Professional commercial carpet cleaning for offices, retail facilities, apartment complexes and commercial properties across Australia.",
     category: "commercial",
     categoryTitle: "Commercial Cleaning Services",
     shortDesc: "SEQ Services provides professional commercial carpet cleaning services that help maintain clean, hygienic, and welcoming workplaces across Australia.",
@@ -264,6 +266,8 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "office-cleaning",
     title: "Office Cleaning",
+    seoTitle: "Office Cleaning Services Australia | SEQ Services",
+    seoDescription: "Professional office cleaning services to create a healthier environment for employees and enhance your professional image across Australia.",
     category: "commercial",
     categoryTitle: "Commercial Cleaning Services",
     shortDesc: "A clean, hygienic workplace creates a healthier environment for employees, enhances your professional image, and leaves a lasting impression on clients and visitors.",
@@ -331,6 +335,8 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "warehouse-cleaning",
     title: "Warehouse Cleaning",
+    seoTitle: "Warehouse Cleaning Services Australia | SEQ Services",
+    seoDescription: "Professional warehouse cleaning services to maintain clean, safe, and efficient working environments across Australia.",
     category: "commercial",
     categoryTitle: "Commercial Cleaning Services",
     shortDesc: "SEQ Services provides professional warehouse cleaning services that help businesses maintain clean, safe, and efficient working environments across Australia.",
@@ -360,6 +366,8 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "biohazard-trauma-cleaning",
     title: "Biohazard & Trauma Cleaning",
+    seoTitle: "Biohazard & Trauma Cleaning Australia | SEQ Services",
+    seoDescription: "Professional biohazard and trauma cleaning services delivering safe, discreet, and compassionate support across Australia.",
     category: "bio",
     categoryTitle: "Bio Cleaning Services",
     shortDesc: "SEQ Services provides professional biohazard and trauma cleaning services, delivering safe, discreet, and compassionate support during some of life's most difficult situations.",
@@ -438,7 +446,9 @@ export const SERVICES_DATA: ServiceData[] = [
   // CATEGORY 3: RESIDENTIAL SERVICES
   {
     id: "residential-carpet-cleaning",
-    title: "Carpet Cleaning",
+    title: "Residential Carpet Cleaning",
+    seoTitle: "Residential Carpet Cleaning Services | SEQ Services",
+    seoDescription: "Professional residential carpet cleaning to remove dirt, stains, allergens and odours from homes across Australia.",
     category: "residential",
     categoryTitle: "Residential Cleaning Services",
     shortDesc: "SEQ Services provides professional residential carpet cleaning services that help keep your home fresh, hygienic, and looking its best.",
@@ -519,6 +529,8 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "builders-final-handover-cleaning",
     title: "Builders Final & Handover Cleaning",
+    seoTitle: "Builders Final & Handover Cleaning Australia | SEQ Services",
+    seoDescription: "Professional builders final and handover cleaning services for residential, commercial, and industrial properties.",
     category: "construction",
     categoryTitle: "Construction & Builders Cleaning Services",
     shortDesc: "SEQ Services provides professional builders final and handover cleaning services that prepare newly completed residential, commercial, and industrial properties for practical completion, client inspections, and final handover.",
@@ -545,6 +557,8 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "construction-site-cleaning",
     title: "Construction Site Cleaning",
+    seoTitle: "Construction Site Cleaning Australia | SEQ Services",
+    seoDescription: "Professional construction site cleaning services for builders and contractors to maintain safe, organised, and compliant worksites.",
     category: "construction",
     categoryTitle: "Construction & Builders Cleaning Services",
     shortDesc: "SEQ Services provides professional construction site cleaning services that help builders and contractors maintain safe, organised, and compliant worksites throughout every stage of construction.",

@@ -10,7 +10,7 @@ export function JsonLdSchema() {
     url: 'https://seqservices.com.au',
     logo: 'https://seqservices.com.au/images/logo.jpg',
     image: 'https://seqservices.com.au/images/hero-office.png',
-    description: 'QBCC & cm3 accredited commercial cleaning, biohazard remediation, builder cleaning, and facility management across South East Queensland.',
+    description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia. Request a free, no-obligation quote today.',
     telephone: CONTACT_INFO.phone,
     email: CONTACT_INFO.email,
     address: {
@@ -19,11 +19,10 @@ export function JsonLdSchema() {
       addressCountry: 'AU',
     },
     areaServed: [
-      'South East Queensland',
-      'Brisbane',
-      'Gold Coast',
-      'Sunshine Coast',
-      'Regional QLD',
+      {
+        '@type': 'Country',
+        name: 'Australia'
+      }
     ],
     priceRange: '$$',
     hasOfferCatalog: {

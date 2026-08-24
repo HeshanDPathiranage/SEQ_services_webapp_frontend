@@ -12,6 +12,7 @@ import { searchSuburbs, findLocalSuburb, SuburbData } from '../lib/locations';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { GoogleReCaptcha } from '../components/forms/GoogleReCaptcha';
+import { sendGAEvent } from '@next/third-parties/google';
 
 const LocationMapSelector = dynamic(() => import('../components/forms/LocationMapSelector'), { ssr: false });
 
@@ -190,6 +191,12 @@ export default function SEQServicesLanding() {
 
       setFormStatus('success');
       setStatusFeedback('Thank you! Your quotation request has been sent successfully to our team.');
+      sendGAEvent({
+        event: 'generate_lead',
+        value: 1,
+        currency: 'AUD',
+        service_category: serviceCategoryValue
+      });
       setNameValue('');
       setCompanyNameValue('');
       setPhoneValue('');

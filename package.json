@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
+    "@next/third-parties": "^14.2.5",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
     "leaflet": "^1.9.4",

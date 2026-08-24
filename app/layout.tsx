@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 import { Providers } from '../components/layout/Providers';
 import { Header } from '../components/layout/Header';
@@ -57,11 +58,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`} suppressHydrationWarning>
-      <head>
-        <meta name="robots" content="noindex, nofollow" />
-      </head>
       <body className="bg-slate-50 text-[#4A5568] font-sans antialiased selection:bg-[#29B6F6]/10 selection:text-[#0B1221] overflow-x-hidden" suppressHydrationWarning>
         <JsonLdSchema />
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
         <Providers>
           <Header />
           <main className="min-h-screen pt-[72px] overflow-x-hidden">

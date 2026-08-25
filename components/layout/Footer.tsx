@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { ChevronRight, Phone, Mail, ArrowRight, MapPin } from 'lucide-react';
 import { CONTACT_INFO, SERVICES_DATA } from '../../lib/data';
+import { trackPhoneClick, trackEmailClick, trackQuoteCTAClick } from '../../lib/analytics';
 
 export function Footer() {
   const commercialServices = SERVICES_DATA.filter(s => s.category === 'commercial');
@@ -178,6 +181,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-slate-200">
             <a 
               href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} 
+              onClick={() => trackPhoneClick(CONTACT_INFO.phone, 'footer_contact_bar')}
               className="flex items-center gap-2 hover:text-blue-300 transition-colors"
             >
               <Phone size={15} className="text-[#29B6F6] shrink-0" />
@@ -189,6 +193,7 @@ export function Footer() {
 
             <a 
               href={`mailto:${CONTACT_INFO.email}`} 
+              onClick={() => trackEmailClick(CONTACT_INFO.email, 'footer_contact_bar')}
               className="flex items-center gap-2 hover:text-blue-300 transition-colors"
             >
               <Mail size={15} className="text-[#29B6F6] shrink-0" />
@@ -205,17 +210,27 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex gap-5 text-xs sm:text-sm text-white font-semibold">
+          <div className="flex flex-wrap gap-4 sm:gap-5 text-xs sm:text-sm text-white font-semibold">
             <Link href="/faq" className="hover:text-[#29B6F6] transition-colors">FAQ</Link>
             <Link href="/services" className="hover:text-[#29B6F6] transition-colors">All Services</Link>
-            <Link href="/#quote" className="hover:text-[#29B6F6] transition-colors">Get a Quote</Link>
+            <Link href="/privacy-policy" className="hover:text-[#29B6F6] transition-colors">Privacy Policy</Link>
+            <Link 
+              href="/#quote" 
+              onClick={() => trackQuoteCTAClick('Get a Quote', 'footer_quick_links')}
+              className="hover:text-[#29B6F6] transition-colors"
+            >
+              Get a Quote
+            </Link>
           </div>
         </div>
 
         {/* Bottom Copyright */}
         <div className="pt-3 border-t border-white/15 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm text-slate-400 font-normal">
           <p className="text-center sm:text-left">
-            &copy; {new Date().getFullYear()} SEQ Services Integrated Solutions. All rights reserved.
+            &copy; {new Date().getFullYear()} SEQ Services Integrated Solutions. All rights reserved. &bull;{' '}
+            <Link href="/privacy-policy" className="underline hover:text-slate-200 transition-colors">
+              Privacy Policy
+            </Link>
           </p>
           <p className="text-slate-300 font-semibold">Fully Accredited Commercial Cleaning</p>
         </div>

@@ -1,10 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { ServiceData } from '../../../lib/data';
+import { trackServicePageView, trackQuoteCTAClick, trackPhoneClick } from '../../../lib/analytics';
 
 const fadeUpVariants: Variants = {
   hidden: { y: 40, opacity: 0 },
@@ -12,6 +13,9 @@ const fadeUpVariants: Variants = {
 };
 
 export function ServiceDetailClient({ service }: { service: ServiceData }) {
+  useEffect(() => {
+    trackServicePageView(service.id, service.title, service.category);
+  }, [service.id, service.title, service.category]);
   return (
     <div className="w-full bg-[#FAFAFA]">
       {/* Hero Header */}
@@ -113,12 +117,14 @@ export function ServiceDetailClient({ service }: { service: ServiceData }) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full shrink-0">
               <Link
                 href="/#quote"
+                onClick={() => trackQuoteCTAClick(`Get Custom Quote - ${service.title}`, 'service_detail_banner')}
                 className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-[#29B6F6] text-white font-bold text-sm sm:text-base hover:bg-[#2563EB] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#29B6F6]/25 text-center"
               >
                 Get Custom Quote <ArrowRight size={18} />
               </Link>
               <a 
                 href="tel:1300211231" 
+                onClick={() => trackPhoneClick('1300 211 231', 'service_detail_banner')}
                 className="w-full sm:w-auto py-4 px-6 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] text-[#0B1221] font-semibold text-sm sm:text-base hover:bg-slate-100 transition-all flex items-center justify-center gap-2 text-center"
               >
                 <Phone size={18} className="text-[#29B6F6]" />

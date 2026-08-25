@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown, Building2, Briefcase, Home, Phone, ArrowRight, ShieldCheck, Sparkles, HardHat } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GROUPED_SERVICES, CONTACT_INFO } from '../../lib/data';
+import { trackPhoneClick, trackQuoteCTAClick } from '../../lib/analytics';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,7 +43,11 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-4 text-slate-300">
-            <a href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} className="flex items-center gap-1.5 hover:text-white transition-colors font-bold text-sm">
+            <a 
+              href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`} 
+              onClick={() => trackPhoneClick(CONTACT_INFO.phone, 'header_top_bar')}
+              className="flex items-center gap-1.5 hover:text-white transition-colors font-bold text-sm"
+            >
               <Phone size={15} className="text-[#29B6F6]" />
               <span>{CONTACT_INFO.phone}</span>
             </a>
@@ -179,6 +184,7 @@ export function Header() {
 
             <Link 
               href="/#quote" 
+              onClick={() => trackQuoteCTAClick('Contact / Get a Quote', 'header_desktop_nav')}
               className="relative text-lg lg:text-xl font-extrabold text-slate-900 hover:text-[#29B6F6] transition-colors py-2 group tracking-tight"
             >
               <span>Contact</span>
@@ -198,6 +204,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <a 
               href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
+              onClick={() => trackPhoneClick(CONTACT_INFO.phone, 'header_desktop_button')}
               className="flex items-center gap-2.5 px-4 lg:px-5 py-2.5 rounded-full bg-slate-100/80 hover:bg-blue-50 text-slate-900 text-sm lg:text-base font-bold transition-all border border-slate-200/80 hover:border-blue-200 hover:text-[#29B6F6]"
             >
               <Phone size={16} className="text-[#29B6F6]" />
@@ -258,7 +265,14 @@ export function Header() {
                 About Us
               </Link>
               
-              <Link href="/#quote" className="text-base font-bold text-slate-900 py-1" onClick={() => setMobileMenuOpen(false)}>
+              <Link 
+                href="/#quote" 
+                className="text-base font-bold text-slate-900 py-1" 
+                onClick={() => {
+                  trackQuoteCTAClick('Contact / Get a Quote', 'header_mobile_drawer');
+                  setMobileMenuOpen(false);
+                }}
+              >
                 Contact
               </Link>
 
@@ -271,6 +285,7 @@ export function Header() {
             <div className="p-4 bg-slate-50 border-t border-slate-100 shrink-0 flex flex-col gap-3">
               <a 
                 href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
+                onClick={() => trackPhoneClick(CONTACT_INFO.phone, 'header_mobile_call_button')}
                 className="flex justify-center items-center gap-2 py-3.5 px-4 rounded-xl bg-[#29B6F6] active:bg-[#81D4FA] text-[#0B1221] text-sm font-bold shadow-lg shadow-[#29B6F6]/30 transition-all"
               >
                 <Phone size={16} />

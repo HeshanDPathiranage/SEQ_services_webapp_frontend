@@ -12,7 +12,7 @@ import { searchSuburbs, findLocalSuburb, SuburbData } from '../lib/locations';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { GoogleReCaptcha } from '../components/forms/GoogleReCaptcha';
-import { sendGAEvent } from '@next/third-parties/google';
+import { trackLeadSubmission, trackQuoteCTAClick } from '../lib/analytics';
 
 const LocationMapSelector = dynamic(() => import('../components/forms/LocationMapSelector'), { ssr: false });
 
@@ -167,7 +167,7 @@ export default function SEQServicesLanding() {
 
     setFormStatus('submitting');
     try {
-      const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000';
+      const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : '');
       const response = await fetch(`${apiBase}/api/enquiry`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -190,12 +190,11 @@ export default function SEQServicesLanding() {
       }
 
       setFormStatus('success');
-      setStatusFeedback('Thank you! Your quotation request has been sent successfully to our team.');
-      sendGAEvent({
-        event: 'generate_lead',
-        value: 1,
-        currency: 'AUD',
-        service_category: serviceCategoryValue
+      setStatusFeedback('Thank you! Your quotation request has been sent. Our team will contact you shortly.');
+      trackLeadSubmission({
+        serviceCategory: serviceCategoryValue,
+        serviceRequired: serviceRequiredValue,
+        location: locationValue,
       });
       setNameValue('');
       setCompanyNameValue('');
@@ -267,6 +266,7 @@ export default function SEQServicesLanding() {
             >
               <Link 
                 href="#quote" 
+                onClick={() => trackQuoteCTAClick('Get Started', 'homepage_hero')}
                 className="w-full sm:w-auto justify-center px-8 py-4 rounded-2xl bg-[#29B6F6] text-white font-bold shadow-lg shadow-[#29B6F6]/35 hover:bg-[#0288D1] transition-all flex items-center gap-2 group text-center"
               >
                 Get Started <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -719,6 +719,14 @@ export default function SEQServicesLanding() {
                   )}
                 </span>
               </button>
+
+              <p className="text-center text-xs text-slate-500 font-medium pt-3 relative z-10">
+                By submitting this form, you agree to our{' '}
+                <Link href="/privacy-policy" className="underline text-[#0052CC] hover:text-blue-800 font-semibold transition-colors">
+                  Privacy Policy
+                </Link>
+                . Your details are encrypted and strictly used to provide your tailored quotation.
+              </p>
             </form>
           </motion.div>
         </div>

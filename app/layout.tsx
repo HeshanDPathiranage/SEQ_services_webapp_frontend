@@ -42,12 +42,17 @@ export const metadata: Metadata = {
     description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia.',
     images: ['/images/hero-office.png'],
   },
+  icons: {
+    icon: '/images/logo.jpg',
+    shortcut: '/images/logo.jpg',
+    apple: '/images/logo.jpg',
+  },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -56,11 +61,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const isRealGaId = Boolean(gaId && gaId !== 'G-XXXXXXXXXX' && /^G-[A-Z0-9]+$/i.test(gaId));
+
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`} suppressHydrationWarning>
       <body className="bg-slate-50 text-[#4A5568] font-sans antialiased selection:bg-[#29B6F6]/10 selection:text-[#0B1221] overflow-x-hidden" suppressHydrationWarning>
         <JsonLdSchema />
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        {isRealGaId && <GoogleAnalytics gaId={gaId!} />}
         <Providers>
           <Header />
           <main className="min-h-screen pt-[72px] overflow-x-hidden">

@@ -9,6 +9,8 @@ import { enquirySchema, EnquirySchemaValues } from '../../lib/validations';
 import { GROUPED_SERVICES } from '../../lib/data';
 import { searchSuburbs, findLocalSuburb, SuburbData } from '../../lib/locations';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { trackLeadSubmission } from '../../lib/analytics';
 import { MapPin, User, Mail, Briefcase, Maximize, MessageSquare, ArrowRight, Loader2 } from 'lucide-react';
 
 const LocationMapSelector = dynamic(() => import('./LocationMapSelector'), { ssr: false });
@@ -56,6 +58,11 @@ export function EnquiryForm() {
 
       setStatus('success');
       setMessage('Your enquiry has been sent. We will contact you shortly.');
+      trackLeadSubmission({
+        serviceCategory: values.serviceCategory,
+        serviceRequired: values.serviceRequired,
+        location: values.location,
+      });
       reset();
     } catch (error) {
       setStatus('error');
@@ -321,6 +328,14 @@ export function EnquiryForm() {
           )}
         </span>
       </button>
+
+      <p className="text-center text-xs text-slate-500 font-medium pt-1">
+        By submitting this form, you agree to our{' '}
+        <Link href="/privacy-policy" className="underline text-brand hover:text-blue-700 font-semibold transition-colors">
+          Privacy Policy
+        </Link>
+        . Your details are encrypted and strictly used to provide your tailored quotation.
+      </p>
 
       {isMapOpen && (
         <LocationMapSelector 

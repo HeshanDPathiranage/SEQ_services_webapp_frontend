@@ -5,6 +5,7 @@ import { motion, Variants } from 'framer-motion';
 import { Award, Users, Shield, MessageCircle } from 'lucide-react';
 import { ABOUT_DATA } from '../../lib/data';
 import Link from 'next/link';
+import { trackQuoteCTAClick } from '../../lib/analytics';
 
 const fadeUpVariants: Variants = {
   hidden: { y: 40, opacity: 0 },
@@ -165,7 +166,11 @@ export function AboutClient() {
         <div className="max-w-4xl mx-auto relative z-10 text-center flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#0B1221] mb-6 text-center">Ready to Discuss Your Cleaning Requirements?</h2>
           <p className="text-lg sm:text-xl md:text-2xl text-[#334155] mb-10 font-normal max-w-2xl mx-auto text-center">Get in touch with our expert team today for a tailored operational proposal and quote.</p>
-          <Link href="/#quote" className="inline-block px-10 py-4.5 bg-[#29B6F6] text-white text-lg sm:text-xl font-bold rounded-2xl shadow-lg hover:bg-[#0042a3] transition-all text-center mx-auto">
+          <Link 
+            href="/#quote" 
+            onClick={() => trackQuoteCTAClick('Contact SEQ Services', 'about_page_cta')}
+            className="inline-block px-10 py-4.5 bg-[#29B6F6] text-white text-lg sm:text-xl font-bold rounded-2xl shadow-lg hover:bg-[#0042a3] transition-all text-center mx-auto"
+          >
             Contact SEQ Services
           </Link>
         </div>

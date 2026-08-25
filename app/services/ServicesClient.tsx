@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES_DATA, GROUPED_SERVICES } from '../../lib/data';
 import Link from 'next/link';
+import { trackPhoneClick, trackQuoteCTAClick } from '../../lib/analytics';
 import { ArrowRight, CheckCircle2, ChevronRight, Shield, Phone, Mail, Sparkles, Building2, Briefcase, Home, HardHat } from 'lucide-react';
 
 const categoryIcons: Record<string, React.ReactNode> = {
@@ -189,10 +190,18 @@ export function ServicesClient() {
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#0B1221] mb-6 text-center">Need a Tailored Operational Proposal?</h2>
           <p className="text-lg sm:text-xl md:text-2xl text-[#334155] mb-10 font-normal max-w-2xl mx-auto text-center">Our team provides custom cleaning proposals for commercial, construction, and specialist facility sites across Australia.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#quote" className="inline-block px-10 py-4.5 bg-[#29B6F6] text-white text-lg sm:text-xl font-bold rounded-2xl shadow-lg hover:bg-[#0042a3] transition-all text-center">
+            <Link 
+              href="/#quote" 
+              onClick={() => trackQuoteCTAClick('Request Free Quote', 'services_index_banner')}
+              className="inline-block px-10 py-4.5 bg-[#29B6F6] text-white text-lg sm:text-xl font-bold rounded-2xl shadow-lg hover:bg-[#0042a3] transition-all text-center"
+            >
               Request Free Quote
             </Link>
-            <a href="tel:1300211231" className="inline-flex items-center justify-center gap-2 px-8 py-4.5 bg-white border border-[#E2E8F0] text-[#0B1221] text-lg sm:text-xl font-bold rounded-2xl shadow-sm hover:bg-slate-100 transition-all text-center">
+            <a 
+              href="tel:1300211231" 
+              onClick={() => trackPhoneClick('1300 211 231', 'services_index_banner')}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4.5 bg-white border border-[#E2E8F0] text-[#0B1221] text-lg sm:text-xl font-bold rounded-2xl shadow-sm hover:bg-slate-100 transition-all text-center"
+            >
               <Phone size={20} className="text-[#29B6F6]" /> 1300 211 231
             </a>
           </div>

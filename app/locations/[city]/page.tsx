@@ -1,9 +1,32 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PageHeading } from '../../../components/sections/PageHeading';
 import { cities } from '../../../lib/constants';
 
 interface LocationPageProps {
   params: { city: string };
+}
+
+export function generateMetadata({ params }: LocationPageProps): Metadata {
+  const city = cities.find((item) => item.slug === params.city);
+  if (!city) return {};
+
+  const title = `Commercial Cleaning ${city.name} | SEQ Services`;
+  const description = city.description;
+  const canonical = `https://seqservices.com.au/locations/${city.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+    },
+  };
 }
 
 export default function LocationPage({ params }: LocationPageProps) {

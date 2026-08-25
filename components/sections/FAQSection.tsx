@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ArrowUpRight, ArrowDownRight, Sparkles, Phone, Mail } from 'lucide-react';
 import { FAQ_DATA, CONTACT_INFO } from '../../lib/data';
+import { trackQuoteCTAClick } from '../../lib/analytics';
 import Link from 'next/link';
 
 interface FAQSectionProps {
@@ -207,6 +208,7 @@ export function FAQSection({ showTitle = true, className = "" }: FAQSectionProps
           <div className="flex items-center gap-4 shrink-0">
             <Link
               href="/#quote"
+              onClick={() => trackQuoteCTAClick('Get in touch', 'faq_accordion_banner')}
               className="px-8 py-4 rounded-xl bg-[#0B1221] hover:bg-[#29B6F6] text-white text-base md:text-lg font-bold shadow-lg transition-all duration-300 hover:scale-[1.02] shrink-0"
             >
               Get in touch

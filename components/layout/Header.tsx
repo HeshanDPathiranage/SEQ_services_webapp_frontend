@@ -267,8 +267,8 @@ export function Header() {
               </Link>
             </div>
 
-            {/* Mobile Footer Call Button */}
-            <div className="p-4 bg-slate-50 border-t border-slate-100 shrink-0">
+            {/* Mobile Footer Call Button & Socials */}
+            <div className="p-4 bg-slate-50 border-t border-slate-100 shrink-0 flex flex-col gap-3">
               <a 
                 href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
                 className="flex justify-center items-center gap-2 py-3.5 px-4 rounded-xl bg-[#29B6F6] active:bg-[#81D4FA] text-[#0B1221] text-sm font-bold shadow-lg shadow-[#29B6F6]/30 transition-all"
@@ -276,6 +276,28 @@ export function Header() {
                 <Phone size={16} />
                 <span>Call {CONTACT_INFO.phone}</span>
               </a>
+              <div className="flex items-center justify-center gap-3 pt-1">
+                <a 
+                  href={CONTACT_INFO.socials.facebook.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-[#0052CC] bg-white border border-slate-200/80 px-3.5 py-2 rounded-xl shadow-sm transition-all hover:scale-105"
+                  title="Facebook"
+                >
+                  <img src={CONTACT_INFO.socials.facebook.icon} alt="Facebook" className="w-4 h-4 rounded-full object-cover" />
+                  <span>Facebook</span>
+                </a>
+                <a 
+                  href={CONTACT_INFO.socials.instagram.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-pink-600 bg-white border border-slate-200/80 px-3.5 py-2 rounded-xl shadow-sm transition-all hover:scale-105"
+                  title="Instagram"
+                >
+                  <img src={CONTACT_INFO.socials.instagram.icon} alt="Instagram" className="w-4 h-4 rounded-full object-cover" />
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

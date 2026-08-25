@@ -8,6 +8,10 @@ export function JsonLdSchema() {
     '@type': 'CleaningService',
     name: 'SEQ Services Integrated Solutions',
     url: 'https://seqservices.com.au',
+    sameAs: [
+      CONTACT_INFO.socials.facebook.url,
+      CONTACT_INFO.socials.instagram.url,
+    ],
     logo: 'https://seqservices.com.au/images/logo.jpg',
     image: 'https://seqservices.com.au/images/hero-office.png',
     description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia. Request a free, no-obligation quote today.',

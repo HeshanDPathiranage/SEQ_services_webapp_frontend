@@ -18,16 +18,79 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scroll when mobile menu is open
+  // Prevent background scroll when mobile menu is open (Toggles body overflow & locks scroll)
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      const scrollY = window.scrollY;
+      const originalBodyTop = body.style.top;
+
+      // Toggle overflow: hidden on body and html
+      body.style.overflow = 'hidden';
+      html.style.overflow = 'hidden';
+
+      html.classList.add('mobile-menu-open');
+      body.classList.add('mobile-menu-open');
+      body.style.top = `-${scrollY}px`;
+
+      let startY = 0;
+      const handleTouchStart = (e: TouchEvent) => {
+        if (e.touches.length === 1) {
+          startY = e.touches[0].clientY;
+        }
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        if (e.touches.length !== 1) return;
+
+        const target = e.target as HTMLElement | null;
+        const scrollable = target?.closest('.mobile-menu-scrollable') as HTMLElement | null;
+
+        // If touch happens outside the scrollable list (e.g. drawer footer, header, backdrop)
+        if (!scrollable) {
+          if (e.cancelable) e.preventDefault();
+          return;
+        }
+
+        // If touch happens inside the scrollable list:
+        const currentY = e.touches[0].clientY;
+        const deltaY = currentY - startY;
+        const { scrollTop, scrollHeight, clientHeight } = scrollable;
+
+        const isAtTop = scrollTop <= 0;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+        // Prevent Android scroll chaining / pull-to-refresh when dragging past bounds
+        if ((isAtTop && deltaY > 0) || (isAtBottom && deltaY < 0)) {
+          if (e.cancelable) e.preventDefault();
+        }
+      };
+
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+      return () => {
+        // Toggle overflow back
+        body.style.overflow = '';
+        html.style.overflow = '';
+
+        html.classList.remove('mobile-menu-open');
+        body.classList.remove('mobile-menu-open');
+        body.style.top = originalBodyTop;
+
+        window.removeEventListener('touchstart', handleTouchStart);
+        window.removeEventListener('touchmove', handleTouchMove);
+
+        window.scrollTo(0, scrollY);
+      };
     } else {
-      document.body.style.overflow = '';
+      body.style.overflow = '';
+      html.style.overflow = '';
+      html.classList.remove('mobile-menu-open');
+      body.classList.remove('mobile-menu-open');
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [mobileMenuOpen]);
 
   return (
@@ -119,7 +182,7 @@ export function Header() {
                       transition={{ duration: 0.2, ease: "easeOut" }}
                       className="w-full max-w-[1350px] pointer-events-auto box-border"
                     >
-                      <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_-15px_rgba(0,51,102,0.18)] border border-slate-200/90 overflow-hidden p-6 sm:p-8 relative max-h-[85vh] overflow-y-auto custom-scrollbar box-border">
+                      <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_-15px_rgba(0,51,102,0.18)] border border-slate-200/90 overflow-hidden p-6 sm:p-8 relative max-h-[85vh] overflow-y-auto overscroll-contain custom-scrollbar box-border">
                         <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#29B6F6] via-[#29B6F6] to-[#00a8cc]" />
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 pt-2">
@@ -228,12 +291,12 @@ export function Header() {
         {mobileMenuOpen && (
           <motion.div 
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'calc(100vh - 70px)' }}
+            animate={{ opacity: 1, height: 'calc(100dvh - 70px)' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200 shadow-2xl overflow-hidden flex flex-col justify-between"
+            className="md:hidden bg-white/98 backdrop-blur-2xl border-b border-slate-200 shadow-2xl overflow-hidden flex flex-col justify-between overscroll-contain"
           >
-            <div className="flex flex-col p-5 gap-3 overflow-y-auto custom-scrollbar flex-1">
+            <div className="flex flex-col p-5 gap-3 overflow-y-auto overscroll-contain touch-pan-y custom-scrollbar flex-1 mobile-menu-scrollable">
               <Link href="/" className="text-base font-bold text-slate-900 border-b border-slate-100 pb-3" onClick={() => setMobileMenuOpen(false)}>
                 Home
               </Link>
@@ -282,7 +345,7 @@ export function Header() {
             </div>
 
             {/* Mobile Footer Call Button & Socials */}
-            <div className="p-4 bg-slate-50 border-t border-slate-100 shrink-0 flex flex-col gap-3">
+            <div className="p-4 bg-slate-50 border-t border-slate-100 shrink-0 flex flex-col gap-3 touch-none">
               <a 
                 href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
                 onClick={() => trackPhoneClick(CONTACT_INFO.phone, 'header_mobile_call_button')}

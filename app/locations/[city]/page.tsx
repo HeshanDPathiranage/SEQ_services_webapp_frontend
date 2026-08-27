@@ -11,7 +11,7 @@ export function generateMetadata({ params }: LocationPageProps): Metadata {
   const city = cities.find((item) => item.slug === params.city);
   if (!city) return {};
 
-  const title = `Commercial Cleaning ${city.name} | SEQ Services`;
+  const title = `Commercial Cleaning in ${city.name}`;
   const description = city.description;
   const canonical = `https://seqservices.com.au/locations/${city.slug}`;
 

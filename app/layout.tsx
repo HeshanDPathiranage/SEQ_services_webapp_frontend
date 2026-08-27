@@ -12,16 +12,16 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Professional Commercial & Specialist Cleaning Services Across Australia | SEQ Services',
-    template: '%s | SEQ Services'
+    default: 'SEQ Services',
+    template: '%s | SEQ Services',
   },
-  description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia. Request a free, no-obligation quote today.',
+  description: 'SEQ Services - Professional Commercial & Residential Cleaning Services',
   metadataBase: new URL('https://seqservices.com.au'),
   alternates: {
     canonical: 'https://seqservices.com.au',
   },
   openGraph: {
-    title: 'Professional Commercial & Specialist Cleaning Services Across Australia | SEQ Services',
+    title: 'SEQ Services - Professional Commercial & Residential Cleaning Services',
     description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia.',
     url: 'https://seqservices.com.au',
     siteName: 'SEQ Services Integrated Solutions',
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Professional Commercial & Specialist Cleaning Services Across Australia | SEQ Services',
+    title: 'SEQ Services - Professional Commercial & Residential Cleaning Services',
     description: 'SEQ Services provides professional commercial, construction, biohazard, and specialist cleaning solutions across Australia.',
     images: ['/images/hero-office.png'],
   },
   icons: {
-    icon: '/images/logo.jpg',
-    shortcut: '/images/logo.jpg',
-    apple: '/images/logo.jpg',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   robots: {
     index: true,

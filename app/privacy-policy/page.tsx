@@ -4,13 +4,13 @@ import { Shield, Lock, Eye, FileText, CheckCircle2, Mail, Phone, MapPin, ArrowRi
 import { CONTACT_INFO } from '../../lib/data';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | SEQ Services Australia',
+  title: 'Privacy Policy',
   description: 'Learn how SEQ Services collects, handles, stores, and protects your personal information and enquiry data in accordance with the Australian Privacy Principles.',
   alternates: {
     canonical: 'https://seqservices.com.au/privacy-policy',
   },
   openGraph: {
-    title: 'Privacy Policy | SEQ Services Australia',
+    title: 'Privacy Policy | SEQ Services',
     description: 'Learn how SEQ Services collects, handles, stores, and protects your personal information and enquiry data in accordance with the Australian Privacy Principles.',
     url: 'https://seqservices.com.au/privacy-policy',
   },
